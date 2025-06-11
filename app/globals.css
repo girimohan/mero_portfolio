@@ -1,0 +1,230 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light mode - true white and blue accent */
+    --background: 0 0% 100%; /* White */
+    --foreground: 220 15% 10%; /* Very dark blue/gray for text */
+    --card: 0 0% 100%;
+    --card-foreground: 220 15% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 15% 10%;
+    --primary: 220 90% 56%; /* Blue accent */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 20% 96%; /* Very light gray */
+    --secondary-foreground: 220 15% 20%;
+    --muted: 210 16% 93%;
+    --muted-foreground: 220 15% 40%;
+    --accent: 220 100% 97%;
+    --accent-foreground: 220 60% 40%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 210 16% 90%;
+    --input: 210 16% 90%;
+    --ring: 220 90% 56%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%; /* Dark background */
+    --foreground: 0 0% 98%;
+    --card: 240 10% 6%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 6%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 47 95% 55%; /* Yellow accent */
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 142 71% 45%; /* Green */
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 47 95% 55%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 47 95% 55%;
+  }
+
+  /* Dialog positioning fixes */
+  [data-radix-popper-content-wrapper] {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: 50 !important;
+  }
+
+  /* Ensure dialog content is properly styled */
+  .dialog-content {
+    max-height: 90vh;
+    overflow-y: auto;
+    margin: 0 auto;
+    width: 90vw;
+    max-width: 900px;
+  }
+
+  /* Ensure the dialog backdrop covers the entire screen */
+  [data-radix-dialog-overlay] {
+    position: fixed;
+    inset: 0;
+    z-index: 49;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+  }
+
+  /* Simplified gradients */
+  .primary-gradient {
+    background: linear-gradient(135deg, hsl(47, 95%, 55%) 0%, hsl(45, 94%, 45%) 100%);
+  }
+
+  .primary-text-gradient {
+    background: linear-gradient(135deg, hsl(47, 95%, 55%) 0%, hsl(45, 94%, 45%) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .secondary-gradient {
+    background: linear-gradient(135deg, hsl(142, 71%, 45%) 0%, hsl(142, 71%, 35%) 100%);
+  }
+
+  .secondary-text-gradient {
+    background: linear-gradient(135deg, hsl(142, 71%, 45%) 0%, hsl(142, 71%, 35%) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .dark-gradient {
+    background: linear-gradient(135deg, hsl(240, 10%, 10%) 0%, hsl(240, 10%, 3.9%) 100%);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground dark;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Typography enhancements */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply tracking-tight;
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted-foreground/30;
+  }
+
+  /* For Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--muted)) transparent;
+  }
+
+  /* Selection color */
+  ::selection {
+    @apply bg-primary/20 text-foreground;
+  }
+}
+
+/* Animation utilities */
+@layer utilities {
+  .animate-in {
+    animation: animateIn 0.3s ease forwards;
+  }
+
+  @keyframes animateIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* Glow effects */
+.glow-yellow {
+  box-shadow: 0 0 15px rgba(250, 204, 21, 0.5);
+}
+
+.glow-green {
+  box-shadow: 0 0 15px rgba(34, 197, 94, 0.5);
+}
+
+/* Profile image effects */
+.profile-hexagon {
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+.profile-diamond {
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+
+.profile-circle {
+  border-radius: 50%;
+}
+
+/* Dark mode text improvements */
+.dark .prose {
+  --tw-prose-body: hsl(0 0% 98% / 0.9);
+  --tw-prose-headings: hsl(0 0% 98%);
+  --tw-prose-lead: hsl(0 0% 98% / 0.7);
+  --tw-prose-links: hsl(47 95% 55%);
+  --tw-prose-bold: hsl(0 0% 98%);
+  --tw-prose-counters: hsl(0 0% 98% / 0.7);
+  --tw-prose-bullets: hsl(0 0% 98% / 0.7);
+  --tw-prose-hr: hsl(240 3.7% 15.9%);
+  --tw-prose-quotes: hsl(0 0% 98%);
+  --tw-prose-quote-borders: hsl(47 95% 55% / 0.3);
+  --tw-prose-captions: hsl(0 0% 98% / 0.7);
+  --tw-prose-code: hsl(0 0% 98%);
+  --tw-prose-pre-code: hsl(0 0% 98% / 0.9);
+  --tw-prose-pre-bg: hsl(240 3.7% 15.9%);
+  --tw-prose-th-borders: hsl(240 3.7% 15.9%);
+  --tw-prose-td-borders: hsl(240 3.7% 15.9% / 0.5);
+}
+
+/* Card hover effects */
+.card-hover-effect {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-hover-effect:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px -5px rgba(250, 204, 21, 0.1), 0 8px 10px -6px rgba(250, 204, 21, 0.1);
+}
+
+
