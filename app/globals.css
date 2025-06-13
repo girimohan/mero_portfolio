@@ -3,15 +3,18 @@
 @tailwind utilities;
 
 @layer base {
+  /* We'll handle transitions in theme-transitions.css */
+  
+  /* Default light theme */
   :root {
-    /* Light mode - true white and blue accent */
-    --background: 0 0% 100%; /* White */
-    --foreground: 220 15% 10%; /* Very dark blue/gray for text */
+    /* Light mode - bright white and vivid blue accent */
+    --background: 0 0% 100%; /* Pure white */
+    --foreground: 220 15% 10%; /* Almost black text for high contrast */
     --card: 0 0% 100%;
     --card-foreground: 220 15% 10%;
     --popover: 0 0% 100%;
     --popover-foreground: 220 15% 10%;
-    --primary: 220 90% 56%; /* Blue accent */
+    --primary: 214 100% 50%; /* Bright blue accent */
     --primary-foreground: 0 0% 100%;
     --secondary: 210 20% 96%; /* Very light gray */
     --secondary-foreground: 220 15% 20%;
@@ -23,20 +26,20 @@
     --destructive-foreground: 0 0% 100%;
     --border: 210 16% 90%;
     --input: 210 16% 90%;
-    --ring: 220 90% 56%;
+    --ring: 214 100% 50%;
     --radius: 0.5rem;
   }
 
   .dark {
-    --background: 240 10% 3.9%; /* Dark background */
-    --foreground: 0 0% 98%;
+    --background: 240 10% 3.9%; /* Very dark background */
+    --foreground: 0 0% 98%; /* Almost white text */
     --card: 240 10% 6%;
     --card-foreground: 0 0% 98%;
     --popover: 240 10% 6%;
     --popover-foreground: 0 0% 98%;
-    --primary: 47 95% 55%; /* Yellow accent */
+    --primary: 47 95% 55%; /* Bright yellow accent - high contrast to blue */
     --primary-foreground: 240 5.9% 10%;
-    --secondary: 142 71% 45%; /* Green */
+    --secondary: 142 71% 45%; /* Vivid green */
     --secondary-foreground: 240 5.9% 10%;
     --muted: 240 3.7% 15.9%;
     --muted-foreground: 240 5% 64.9%;
@@ -111,7 +114,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground dark;
+    @apply bg-background text-foreground;
   }
 
   html {

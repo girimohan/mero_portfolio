@@ -27,18 +27,18 @@ export default function HeroSection() {
     <section
       id="home"
       ref={containerRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden py-20"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden py-20 dark:bg-background/60"
     >
       {/* Background Elements */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-gradient-to-b from-background to-background/90" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background to-background/90 dark:from-background/80 dark:to-background" />
         <motion.div
           style={{ opacity, y }}
-          className="absolute top-1/3 left-1/4 w-64 h-64 bg-primary/5 rounded-full blur-3xl"
+          className="absolute top-1/3 left-1/4 w-64 h-64 bg-primary/5 dark:bg-primary/10 rounded-full blur-3xl"
         />
         <motion.div
           style={{ opacity, y: useTransform(scrollYProgress, [0, 1], [0, -200]) }}
-          className="absolute bottom-1/3 right-1/4 w-64 h-64 bg-secondary/5 rounded-full blur-3xl"
+          className="absolute bottom-1/3 right-1/4 w-64 h-64 bg-secondary/5 dark:bg-secondary/10 rounded-full blur-3xl"
         />
       </div>
 
@@ -63,7 +63,7 @@ export default function HeroSection() {
                 transition={{ duration: 0.6, delay: 0.1 }}
                 className="inline-block"
               >
-                <Badge className="px-4 py-1 text-lg mb-6 bg-primary/10 text-primary border-primary/20 rounded-full">
+                <Badge className="px-4 py-1 text-lg mb-6 bg-primary/10 text-primary border-primary/20 dark:bg-primary/20 dark:border-primary/30 rounded-full">
                   Full-Stack Developer
                 </Badge>
               </motion.div>
@@ -72,7 +72,7 @@ export default function HeroSection() {
                 Hi, I'm <span className="primary-text-gradient">Giri Mohan</span>
               </h1>
 
-              <p className="text-xl text-foreground/80 mb-8 leading-relaxed">
+              <p className="text-xl text-foreground/80 dark:text-foreground/70 mb-8 leading-relaxed">
                 A passionate full-stack developer and machine learning enthusiast with expertise in building modern web
                 applications and AI-powered solutions. Based in Finland, I combine technical skills with creative
                 problem-solving to deliver exceptional digital experiences.
@@ -97,7 +97,7 @@ export default function HeroSection() {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="rounded-full h-10 w-10 hover:text-primary hover:bg-primary/10"
+                  className="rounded-full h-10 w-10 hover:text-primary hover:bg-primary/10 dark:hover:bg-primary/20"
                   aria-label="GitHub"
                   asChild
                 >
@@ -108,7 +108,7 @@ export default function HeroSection() {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="rounded-full h-10 w-10 hover:text-primary hover:bg-primary/10"
+                  className="rounded-full h-10 w-10 hover:text-primary hover:bg-primary/10 dark:hover:bg-primary/20"
                   aria-label="LinkedIn"
                   asChild
                 >
@@ -119,7 +119,7 @@ export default function HeroSection() {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="rounded-full h-10 w-10 hover:text-primary hover:bg-primary/10"
+                  className="rounded-full h-10 w-10 hover:text-primary hover:bg-primary/10 dark:hover:bg-primary/20"
                   aria-label="Email"
                   asChild
                 >
@@ -138,8 +138,8 @@ export default function HeroSection() {
               transition={{ duration: 0.8, delay: 0.4 }}
             >
               <div className="relative w-64 h-64 md:w-80 md:h-80">
-                <div className="absolute inset-0 profile-hexagon bg-gradient-to-br from-primary/20 to-secondary/20 backdrop-blur-sm border border-primary/10 glow-yellow" />
-                <div className="absolute inset-2 profile-hexagon overflow-hidden bg-card">
+                <div className="absolute inset-0 profile-hexagon bg-gradient-to-br from-primary/20 to-secondary/20 dark:from-primary/30 dark:to-secondary/30 backdrop-blur-sm border border-primary/10 dark:border-primary/20 glow-yellow" />
+                <div className="absolute inset-2 profile-hexagon overflow-hidden bg-card dark:bg-card/80">
                   <Image
                     src="/images/profile/profile.png"
                     alt="Giri Mohan"
@@ -158,8 +158,8 @@ export default function HeroSection() {
             animate={{ y: [0, 10, 0] }}
             transition={{ repeat: Number.POSITIVE_INFINITY, duration: 2 }}
           >
-            <span className="text-sm text-foreground/60 mb-2">Scroll Down</span>
-            <ArrowDown className="h-4 w-4 text-foreground/60" />
+            <span className="text-sm text-foreground/60 dark:text-foreground/50 mb-2">Scroll Down</span>
+            <ArrowDown className="h-4 w-4 text-foreground/60 dark:text-foreground/50" />
           </motion.div>
         </div>
       </div>

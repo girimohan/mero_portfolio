@@ -37,13 +37,13 @@ export default function BlogSection() {
   }
 
   return (
-    <section id="blog" ref={containerRef} className="py-20 min-h-screen relative overflow-hidden">
+    <section id="blog" ref={containerRef} className="py-20 min-h-screen relative overflow-hidden dark:bg-background/60">
       {/* Background Elements */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-background to-background/90" />
-        <motion.div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-primary/5 blur-3xl" style={{ y }} />
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-background to-background/90 dark:from-background/70 dark:to-background" />
+        <motion.div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-primary/5 dark:bg-primary/10 blur-3xl" style={{ y }} />
         <motion.div
-          className="absolute bottom-1/4 right-1/4 w-64 h-64 rounded-full bg-primary/5 blur-3xl"
+          className="absolute bottom-1/4 right-1/4 w-64 h-64 rounded-full bg-primary/5 dark:bg-primary/10 blur-3xl"
           style={{ y: useTransform(scrollYProgress, [0, 1], [-100, 100]) }}
         />
       </div>
@@ -68,12 +68,12 @@ export default function BlogSection() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="inline-block"
             >
-              <Badge className="px-4 py-1 text-lg mb-4 bg-primary/20 text-primary border-primary/30 rounded-full">
+              <Badge className="px-4 py-1 text-lg mb-4 bg-primary/20 text-primary border-primary/30 dark:bg-primary/30 dark:border-primary/40 rounded-full">
                 Insights
               </Badge>
             </motion.div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 primary-text-gradient">From The Blog</h2>
-            <p className="text-xl text-foreground/80 max-w-2xl mx-auto">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 primary-text-gradient dark:text-primary-gradient">From The Blog</h2>
+            <p className="text-xl text-foreground/80 dark:text-foreground/70 max-w-2xl mx-auto">
               Insights and reflections on machine learning, computer vision, NLP, and modern web development. Explore my
               thoughts on industry best practices and emerging technologies.
             </p>
@@ -89,7 +89,7 @@ export default function BlogSection() {
                 whileHover={{ y: -10 }}
               >
                 <Card
-                  className="overflow-hidden cursor-pointer group h-full flex flex-col bg-card/80 backdrop-blur-sm border border-border/50 hover:border-primary/30 transition-all hover:shadow-lg hover:shadow-primary/5"
+                  className="overflow-hidden cursor-pointer group h-full flex flex-col bg-card/80 dark:bg-card/60 backdrop-blur-sm border border-border/50 dark:border-border/30 hover:border-primary/30 dark:hover:border-primary/40 transition-all hover:shadow-lg hover:shadow-primary/5 dark:hover:shadow-primary/10"
                   onClick={() => handleBlogClick(post)}
                 >
                   <div className="relative h-48 overflow-hidden">

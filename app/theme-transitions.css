@@ -1,0 +1,77 @@
+/* Theme transition styles */
+:root {
+  --transition-duration: 0.5s;
+  --transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Apply transitions selectively to prevent issues with theme toggling */
+/* We don't want to apply transitions to all elements as it can cause performance issues */
+.theme-initialized * {
+  transition: 
+    background-color var(--transition-duration) var(--transition-timing),
+    color var(--transition-duration) var(--transition-timing),
+    border-color var(--transition-duration) var(--transition-timing),
+    box-shadow var(--transition-duration) var(--transition-timing),
+    opacity var(--transition-duration) var(--transition-timing),
+    transform 0.3s var(--transition-timing);
+}
+
+/* Special elements that need explicit transitions */
+html,
+body {
+  transition: 
+    background-color var(--transition-duration) var(--transition-timing), 
+    color var(--transition-duration) var(--transition-timing);
+}
+
+/* Theme toggle icon animation */
+.theme-transition-icon {
+  transform-origin: center;
+  transition: 
+    transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity var(--transition-duration) var(--transition-timing),
+    color var(--transition-duration) var(--transition-timing),
+    filter 0.3s ease;
+}
+
+.theme-toggle-button:hover .theme-transition-icon {
+  transform: rotate(360deg);
+  filter: brightness(1.2);
+}
+
+/* Enhanced theme visibility */
+.light {
+  --theme-bg: hsl(0, 0%, 100%);
+  --theme-color: hsl(220, 15%, 10%);
+}
+
+.dark {
+  --theme-bg: hsl(240, 10%, 3.9%);
+  --theme-color: hsl(0, 0%, 98%);
+  --background-contrast: 1.1;
+  
+  /* Slightly increase contrast in dark mode */
+  filter: contrast(var(--background-contrast));
+}
+
+/* Add a flash effect when switching themes */
+@keyframes theme-switch-flash {
+  0% { opacity: 0; }
+  10% { opacity: 0.1; }
+  100% { opacity: 0; }
+}
+
+/* A fullscreen overlay that flashes when theme changes */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: white;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+body.theme-switching::after {
+  animation: theme-switch-flash 0.3s forwards;
+}

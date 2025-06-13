@@ -130,23 +130,23 @@ export default function SkillsSection() {
   }
 
   return (
-    <section className="py-20 bg-background" id="skills">
+    <section className="py-20 bg-background dark:bg-background/80" id="skills">
       <div className="container px-4 md:px-6">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold tracking-tight mb-4">Technical Expertise</h2>
-          <div className="w-24 h-0.5 bg-primary mx-auto mb-6"></div>
-          <p className="text-xl text-foreground/80 max-w-2xl mx-auto">
+          <h2 className="text-3xl font-bold tracking-tight mb-4 dark:text-foreground">Technical Expertise</h2>
+          <div className="w-24 h-0.5 bg-primary dark:bg-primary/80 mx-auto mb-6"></div>
+          <p className="text-xl text-foreground/80 dark:text-foreground/70 max-w-2xl mx-auto">
             As a Data Scientist and ML Engineer, I've developed expertise in various technologies and methodologies.
           </p>
         </div>
 
         <Tabs defaultValue="Machine Learning" className="w-full max-w-4xl mx-auto" onValueChange={handleTabChange}>
-          <TabsList className="grid grid-cols-2 md:grid-cols-4 mb-8 bg-card p-1 rounded-lg">
+          <TabsList className="grid grid-cols-2 md:grid-cols-4 mb-8 bg-card dark:bg-card/50 p-1 rounded-lg">
             {skillCategories.map((category) => (
               <TabsTrigger
                 key={category.name}
                 value={category.name}
-                className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-md"
+                className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground dark:data-[state=inactive]:text-foreground/70 rounded-md"
               >
                 <div className="flex items-center gap-2">
                   {category.icon}
@@ -159,18 +159,18 @@ export default function SkillsSection() {
           {skillCategories.map((category) => (
             <TabsContent key={category.name} value={category.name} className="space-y-8">
               <div className="flex items-center justify-center mb-6">
-                <div className="bg-primary/20 p-3 rounded-full">{getCategoryIcon()}</div>
-                <h3 className="text-xl font-medium ml-3">{category.name} Skills</h3>
+                <div className="bg-primary/20 dark:bg-primary/30 p-3 rounded-full">{getCategoryIcon()}</div>
+                <h3 className="text-xl font-medium ml-3 dark:text-foreground">{category.name} Skills</h3>
               </div>
 
-              <Card className="border border-primary/20">
+              <Card className="border border-primary/20 dark:border-primary/30 dark:bg-card/50">
                 <CardContent className="p-6">
                   {/* Expert Skills */}
                   {groupedSkills[skillLevels.EXPERT].length > 0 && (
                     <div className="mb-8">
                       <div className="flex items-center mb-4">
-                        <Award className="h-5 w-5 text-primary mr-2" />
-                        <h4 className="text-lg font-medium">Expert Level</h4>
+                        <Award className="h-5 w-5 text-primary dark:text-primary/90 mr-2" />
+                        <h4 className="text-lg font-medium dark:text-foreground">Expert Level</h4>
                       </div>
                       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                         {groupedSkills[skillLevels.EXPERT].map((skill) => (
@@ -179,10 +179,10 @@ export default function SkillsSection() {
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.3 }}
-                            className="flex items-center bg-primary/10 rounded-md p-3"
+                            className="flex items-center bg-primary/10 dark:bg-primary/20 rounded-md p-3"
                           >
-                            <Award className="h-4 w-4 text-primary mr-2 flex-shrink-0" />
-                            <span className="font-medium text-sm">{skill.name}</span>
+                            <Award className="h-4 w-4 text-primary dark:text-primary/90 mr-2 flex-shrink-0" />
+                            <span className="font-medium text-sm dark:text-foreground/90">{skill.name}</span>
                           </motion.div>
                         ))}
                       </div>
@@ -193,8 +193,8 @@ export default function SkillsSection() {
                   {groupedSkills[skillLevels.ADVANCED].length > 0 && (
                     <div className="mb-8">
                       <div className="flex items-center mb-4">
-                        <Zap className="h-5 w-5 text-secondary mr-2" />
-                        <h4 className="text-lg font-medium">Advanced Level</h4>
+                        <Zap className="h-5 w-5 text-secondary dark:text-secondary/90 mr-2" />
+                        <h4 className="text-lg font-medium dark:text-foreground">Advanced Level</h4>
                       </div>
                       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                         {groupedSkills[skillLevels.ADVANCED].map((skill) => (
@@ -203,10 +203,10 @@ export default function SkillsSection() {
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.3 }}
-                            className="flex items-center bg-secondary/10 rounded-md p-3"
+                            className="flex items-center bg-secondary/10 dark:bg-secondary/20 rounded-md p-3"
                           >
-                            <Zap className="h-4 w-4 text-secondary mr-2 flex-shrink-0" />
-                            <span className="font-medium text-sm">{skill.name}</span>
+                            <Zap className="h-4 w-4 text-secondary dark:text-secondary/90 mr-2 flex-shrink-0" />
+                            <span className="font-medium text-sm dark:text-foreground/90">{skill.name}</span>
                           </motion.div>
                         ))}
                       </div>
@@ -217,8 +217,8 @@ export default function SkillsSection() {
                   {groupedSkills[skillLevels.INTERMEDIATE].length > 0 && (
                     <div>
                       <div className="flex items-center mb-4">
-                        <Check className="h-5 w-5 text-foreground/60 mr-2" />
-                        <h4 className="text-lg font-medium">Intermediate Level</h4>
+                        <Check className="h-5 w-5 text-foreground/60 dark:text-foreground/50 mr-2" />
+                        <h4 className="text-lg font-medium dark:text-foreground">Intermediate Level</h4>
                       </div>
                       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                         {groupedSkills[skillLevels.INTERMEDIATE].map((skill) => (
@@ -227,10 +227,10 @@ export default function SkillsSection() {
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.3 }}
-                            className="flex items-center bg-muted rounded-md p-3"
+                            className="flex items-center bg-muted dark:bg-muted/60 rounded-md p-3"
                           >
-                            <Check className="h-4 w-4 text-foreground/60 mr-2 flex-shrink-0" />
-                            <span className="font-medium text-sm">{skill.name}</span>
+                            <Check className="h-4 w-4 text-foreground/60 dark:text-foreground/50 mr-2 flex-shrink-0" />
+                            <span className="font-medium text-sm dark:text-foreground/80">{skill.name}</span>
                           </motion.div>
                         ))}
                       </div>

@@ -40,14 +40,13 @@ export default function ProjectsSection() {
     router.push(`/projects/${project.id}`)
   }
 
-  return (
-    <section id="projects" ref={containerRef} className="py-20 min-h-screen relative overflow-hidden">
+  return (    <section id="projects" ref={containerRef} className="py-20 min-h-screen relative overflow-hidden dark:bg-background/60">
       {/* Background Elements */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-background/90 to-background" />
-        <motion.div className="absolute top-1/4 right-1/4 w-96 h-96 rounded-full bg-primary/5 blur-3xl" style={{ y }} />
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-background/90 to-background dark:from-background/70 dark:to-background" />
+        <motion.div className="absolute top-1/4 right-1/4 w-96 h-96 rounded-full bg-primary/5 dark:bg-primary/10 blur-3xl" style={{ y }} />
         <motion.div
-          className="absolute bottom-1/4 left-1/4 w-64 h-64 rounded-full bg-primary/5 blur-3xl"
+          className="absolute bottom-1/4 left-1/4 w-64 h-64 rounded-full bg-primary/5 dark:bg-primary/10 blur-3xl"
           style={{ y: useTransform(scrollYProgress, [0, 1], [-100, 100]) }}
         />
       </div>
@@ -71,13 +70,12 @@ export default function ProjectsSection() {
               animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               className="inline-block"
-            >
-              <Badge className="px-4 py-1 text-lg mb-4 bg-primary/20 text-primary border-primary/30 rounded-full">
+            >              <Badge className="px-4 py-1 text-lg mb-4 bg-primary/20 text-primary border-primary/30 dark:bg-primary/30 dark:border-primary/40 rounded-full">
                 Portfolio
               </Badge>
             </motion.div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 primary-text-gradient">Featured Projects</h2>
-            <p className="text-xl text-foreground/80 max-w-2xl mx-auto">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 primary-text-gradient dark:text-primary-gradient">Featured Projects</h2>
+            <p className="text-xl text-foreground/80 dark:text-foreground/70 max-w-2xl mx-auto">
               A collection of innovative projects spanning machine learning, computer vision, NLP, and web development.
               Each project demonstrates practical applications of cutting-edge technologies.
             </p>
@@ -89,16 +87,15 @@ export default function ProjectsSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-          >
-            <Tabs value={category} onValueChange={setCategory} className="w-auto">
-              <TabsList className="grid w-full grid-cols-4 lg:grid-cols-5 bg-card/50 backdrop-blur-sm">
-                <TabsTrigger value="all" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+          >            <Tabs value={category} onValueChange={setCategory} className="w-auto">
+              <TabsList className="grid w-full grid-cols-4 lg:grid-cols-5 bg-card/50 dark:bg-card/30 backdrop-blur-sm">
+                <TabsTrigger value="all" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground dark:data-[state=inactive]:text-foreground/70">
                   All
                 </TabsTrigger>
-                <TabsTrigger value="ml" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                <TabsTrigger value="ml" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground dark:data-[state=inactive]:text-foreground/70">
                   ML/AI
                 </TabsTrigger>
-                <TabsTrigger value="web" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                <TabsTrigger value="web" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground dark:data-[state=inactive]:text-foreground/70">
                   Web
                 </TabsTrigger>
                 <TabsTrigger value="testing" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
@@ -120,9 +117,8 @@ export default function ProjectsSection() {
                 animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                 transition={{ duration: 0.5, delay: 0.1 * index }}
                 whileHover={{ y: -10 }}
-              >
-                <Card
-                  className="overflow-hidden cursor-pointer group h-full flex flex-col bg-card/80 backdrop-blur-sm border border-border/50 hover:border-primary/30 transition-all hover:shadow-lg hover:shadow-primary/5"
+              >                <Card
+                  className="overflow-hidden cursor-pointer group h-full flex flex-col bg-card/80 dark:bg-card/60 backdrop-blur-sm border border-border/50 dark:border-border/30 hover:border-primary/30 dark:hover:border-primary/40 transition-all hover:shadow-lg hover:shadow-primary/5 dark:hover:shadow-primary/10"
                   onClick={() => handleProjectClick(project)}
                 >
                   <div className="relative h-48 overflow-hidden">

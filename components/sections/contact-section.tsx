@@ -44,12 +44,12 @@ export default function ContactSection() {
   }
 
   return (
-    <section className="py-20 bg-background" id="contact">
+    <section className="py-20 bg-background dark:bg-background/90" id="contact">
       <div className="container px-4 md:px-6">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold tracking-tight mb-4">Get In Touch</h2>
-          <div className="w-24 h-0.5 bg-finland-blue mx-auto mb-6"></div>
-          <p className="text-xl text-foreground/80 max-w-2xl mx-auto">
+          <h2 className="text-3xl font-bold tracking-tight mb-4 dark:text-foreground">Get In Touch</h2>
+          <div className="w-24 h-0.5 bg-finland-blue dark:bg-finland-blue/70 mx-auto mb-6"></div>
+          <p className="text-xl text-foreground/80 dark:text-foreground/70 max-w-2xl mx-auto">
             Have a project in mind or want to collaborate? Feel free to reach out to me.
           </p>
         </div>
@@ -57,16 +57,16 @@ export default function ContactSection() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {/* Contact Info Cards */}
           <div className="space-y-4">
-            <Card className="border-finland-blue/20 hover:border-finland-blue/40 transition-colors">
+            <Card className="border-finland-blue/20 hover:border-finland-blue/40 dark:border-finland-blue/30 dark:hover:border-finland-blue/50 dark:bg-card/50 transition-colors">
               <CardContent className="p-6 flex items-center space-x-4">
-                <div className="bg-finland-blue/10 p-3 rounded-full">
-                  <Mail className="h-6 w-6 text-finland-blue" />
+                <div className="bg-finland-blue/10 dark:bg-finland-blue/20 p-3 rounded-full">
+                  <Mail className="h-6 w-6 text-finland-blue dark:text-finland-blue/90" />
                 </div>
                 <div>
-                  <h3 className="font-medium">Email</h3>
+                  <h3 className="font-medium dark:text-foreground">Email</h3>
                   <a
                     href="mailto:mohan_gi@hotmail.com"
-                    className="text-foreground/80 hover:text-finland-blue transition-colors"
+                    className="text-foreground/80 dark:text-foreground/70 hover:text-finland-blue dark:hover:text-finland-blue/90 transition-colors"
                   >
                     mohan_gi@hotmail.com
                   </a>
@@ -74,26 +74,26 @@ export default function ContactSection() {
               </CardContent>
             </Card>
 
-            <Card className="border-finland-lightBlue/20 hover:border-finland-lightBlue/40 transition-colors">
+            <Card className="border-finland-lightBlue/20 hover:border-finland-lightBlue/40 dark:border-finland-lightBlue/30 dark:hover:border-finland-lightBlue/50 dark:bg-card/50 transition-colors">
               <CardContent className="p-6 flex items-center space-x-4">
-                <div className="bg-finland-lightBlue/10 p-3 rounded-full">
-                  <MapPin className="h-6 w-6 text-finland-lightBlue" />
+                <div className="bg-finland-lightBlue/10 dark:bg-finland-lightBlue/20 p-3 rounded-full">
+                  <MapPin className="h-6 w-6 text-finland-lightBlue dark:text-finland-lightBlue/90" />
                 </div>
                 <div>
-                  <h3 className="font-medium">Location</h3>
-                  <p className="text-foreground/80">Helsinki, Finland</p>
+                  <h3 className="font-medium dark:text-foreground">Location</h3>
+                  <p className="text-foreground/80 dark:text-foreground/70">Helsinki, Finland</p>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="border-finland-blue/20 hover:border-finland-blue/40 transition-colors">
+            <Card className="border-finland-blue/20 hover:border-finland-blue/40 dark:border-finland-blue/30 dark:hover:border-finland-blue/50 dark:bg-card/50 transition-colors">
               <CardContent className="p-6 flex items-center space-x-4">
-                <div className="bg-finland-blue/10 p-3 rounded-full">
-                  <Phone className="h-6 w-6 text-finland-blue" />
+                <div className="bg-finland-blue/10 dark:bg-finland-blue/20 p-3 rounded-full">
+                  <Phone className="h-6 w-6 text-finland-blue dark:text-finland-blue/90" />
                 </div>
                 <div>
-                  <h3 className="font-medium">Phone</h3>
-                  <p className="text-foreground/80">Available upon request</p>
+                  <h3 className="font-medium dark:text-foreground">Phone</h3>
+                  <p className="text-foreground/80 dark:text-foreground/70">Available upon request</p>
                 </div>
               </CardContent>
             </Card>

@@ -17,10 +17,31 @@ export default function FeaturedSection() {
   const [featuredBlog, setFeaturedBlog] = useState<BlogPost | null>(null)
   const router = useRouter()
 
-  const [ref, inView] = useInView({
-    triggerOnce: false,
-    threshold: 0.1,
-  })
+  useEffect(() => {
+    // Get all projects and blogs
+    const projects = getProjects()
+    const blogs = getBlogPosts()
+
+    // Sort projects by id descending (or by date if available)
+    const sortedProjects = [...projects].sort((a, b) => {
+      // If both have a date, sort by date
+      if (a.date && b.date) {
+        return new Date(b.date).getTime() - new Date(a.date).getTime()
+      }
+      // Otherwise, sort by id (assuming higher id is newer)
+      return Number(b.id) - Number(a.id)
+    })
+    // Sort blogs by date descending (or by id)
+    const sortedBlogs = [...blogs].sort((a, b) => {
+      if (a.date && b.date) {
+        return new Date(b.date).getTime() - new Date(a.date).getTime()
+      }
+      return Number(b.id) - Number(a.id)
+    })
+
+    setFeaturedProject(sortedProjects[0] || null)
+    setFeaturedBlog(sortedBlogs[0] || null)
+  }, [])
 
   const containerRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
@@ -30,19 +51,10 @@ export default function FeaturedSection() {
 
   const y = useTransform(scrollYProgress, [0, 1], [50, -50])
 
-  useEffect(() => {
-    // Get featured items from static data
-    const projects = getProjects()
-    const blogs = getBlogPosts()
-    
-    if (projects.length > 0) {
-      setFeaturedProject(projects[0]) // Get the first project as featured
-    }
-    
-    if (blogs.length > 0) {
-      setFeaturedBlog(blogs[0]) // Get the first blog as featured
-    }
-  }, [])
+  const [ref, inView] = useInView({
+    triggerOnce: false,
+    threshold: 0.1,
+  })
 
   return (
     <section ref={containerRef} className="py-16 relative overflow-hidden">

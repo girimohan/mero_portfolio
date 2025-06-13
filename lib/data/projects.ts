@@ -13,20 +13,17 @@ export interface Project {
 }
 
 export const projects: Project[] = [
-  {
-    id: 1,
+  {    id: 1,
     slug: "smart-parking-assistant",
     title: "Smart Parking Assistant",
-    subtitle: "Master's Thesis Project",
+    subtitle: "Bachelor's Thesis Project",
     description:
       "Developed an intelligent parking management system combining YOLOv5l-based computer vision (97.9% detection precision) with Rasa chatbot interface (92% intent recognition). Implemented transfer learning with synthetic data augmentation on PKLot dataset, integrated Flask REST API for video processing, and created Streamlit web interface for real-time monitoring.",
     image: "/images/ui/placeholder.svg?height=400&width=600",
     tags: ["Python", "PyTorch", "Rasa", "Flask", "Streamlit", "OpenCV", "YOLO"],
     category: "ml",
-    demoUrl: "#",
-    content: `
-      <p>This project represents my Master's thesis work in developing an intelligent parking management system that combines computer vision with conversational AI.</p>
-      
+    demoUrl: "#",    content: `
+      <p>This project represents my Bachelor's thesis work in developing an intelligent parking management system that combines computer vision with conversational AI.</p>
       <h3>Technical Architecture</h3>
       <p>The system integrates multiple technologies:</p>
       <ul>

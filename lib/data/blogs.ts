@@ -129,6 +129,34 @@ export const blogPosts: BlogPost[] = [
       <p>Next.js has become the standard for React applications, providing the perfect balance of performance and developer experience.</p>
     `,
   },
+  {
+    id: 5,
+    slug: "change-in-coding-modern-days",
+    title: "Change in Coding in Modern Days: How Coders Survive",
+    summary: "A reflection on the rapid evolution of coding practices, tools, and the mindset required for developers to thrive in today's tech landscape.",
+    image: "/images/ui/placeholder.jpg",
+    date: "June 13, 2025",
+    readTime: "7 min read",
+    category: "Tech Reflections",
+    content: `
+      <p>The world of coding has changed dramatically in recent years. With the rise of AI, cloud computing, and ever-evolving frameworks, the life of a coder is more dynamic—and challenging—than ever before.</p>
+      <h3>Adapting to Rapid Change</h3>
+      <p>Gone are the days when learning one language or framework was enough for a decade. Today, developers must constantly update their skills, adapt to new paradigms, and embrace lifelong learning. The pace of change is relentless, and those who thrive are the ones who stay curious and flexible.</p>
+      <h3>The AI Revolution</h3>
+      <p>AI tools like Copilot and ChatGPT are transforming how we write code. While some fear automation, savvy coders use these tools to boost productivity, automate repetitive tasks, and focus on creative problem-solving. The key is to see AI as a partner, not a threat.</p>
+      <h3>Remote Work and Global Teams</h3>
+      <p>The pandemic accelerated remote work, making collaboration skills and asynchronous communication more important than ever. Coders now work with teams across the globe, requiring adaptability, empathy, and strong written communication.</p>
+      <h3>Survival Strategies</h3>
+      <ul>
+        <li><strong>Continuous Learning:</strong> Invest in yourself—take courses, read docs, and experiment with new tech.</li>
+        <li><strong>Community:</strong> Engage with developer communities for support, networking, and knowledge sharing.</li>
+        <li><strong>Well-being:</strong> Balance is crucial. Avoid burnout by setting boundaries and taking care of your mental health.</li>
+        <li><strong>Soft Skills:</strong> Communication, teamwork, and adaptability are as important as technical chops.</li>
+      </ul>
+      <h3>Conclusion</h3>
+      <p>Modern coding is about more than just code—it's about learning, adapting, and thriving in a fast-paced world. The best coders are resilient, resourceful, and always ready for what's next.</p>
+    `,
+  },
 ]
 
 export function getBlogPosts(): BlogPost[] {

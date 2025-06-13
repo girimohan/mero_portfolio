@@ -1,11 +1,11 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { useRouter, usePathname } from "next/navigation"
-import { Github, Linkedin, Menu, X, Sun, Moon } from "lucide-react"
+import { Github, Link, Menu, X, Linkedin } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { motion, AnimatePresence } from "framer-motion"
-import { useTheme } from "next-themes"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 interface NavbarProps {
   activeSection?: string
@@ -13,14 +13,8 @@ interface NavbarProps {
 
 const Navbar = ({ activeSection = "home" }: NavbarProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [mounted, setMounted] = useState(false)
   const router = useRouter()
   const pathname = usePathname()
-  const { theme, setTheme } = useTheme()
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
 
   const isHomePage = pathname === "/"
 
@@ -61,14 +55,14 @@ const Navbar = ({ activeSection = "home" }: NavbarProps) => {
   ]
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 dark:bg-background/90 backdrop-blur-md border-b border-border/50 dark:border-border/30">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
             <button
               onClick={() => handleNavigation("home")}
-              className="text-2xl font-bold text-primary hover:text-primary/80 transition-colors"
+              className="text-2xl font-bold text-primary dark:text-primary hover:text-primary/80 dark:hover:text-primary/90 transition-colors"
             >
               Giri Mohan
             </button>
@@ -80,8 +74,10 @@ const Navbar = ({ activeSection = "home" }: NavbarProps) => {
               <button
                 key={item.id}
                 onClick={() => handleNavigation(item.id)}
-                className={`text-sm font-medium transition-colors hover:text-primary ${
-                  activeSection === item.id ? "text-primary" : "text-foreground/70"
+                className={`text-sm font-medium transition-colors hover:text-primary dark:hover:text-primary ${
+                  activeSection === item.id 
+                    ? "text-primary dark:text-primary" 
+                    : "text-foreground/70 dark:text-foreground/80"
                 }`}
               >
                 {item.label}
@@ -91,7 +87,12 @@ const Navbar = ({ activeSection = "home" }: NavbarProps) => {
 
           {/* Social Links & Theme Switcher */}
           <div className="hidden md:flex items-center space-x-2">
-            <Button variant="ghost" size="icon" asChild className="text-foreground/80 hover:text-primary">
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              asChild 
+              className="text-foreground/80 dark:text-foreground/70 hover:text-primary dark:hover:text-primary"
+            >
               <a
                 href="https://www.linkedin.com/in/mohan-giri-37b87a186/"
                 target="_blank"
@@ -101,28 +102,19 @@ const Navbar = ({ activeSection = "home" }: NavbarProps) => {
                 <Linkedin className="h-5 w-5" />
               </a>
             </Button>
-            <Button variant="ghost" size="icon" asChild className="text-foreground/80 hover:text-primary">
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              asChild 
+              className="text-foreground/80 dark:text-foreground/70 hover:text-primary dark:hover:text-primary"
+            >
               <a href="https://github.com/girimohan" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
                 <Github className="h-5 w-5" />
               </a>
             </Button>
-            {/* Theme Switcher Dropdown */}
+            {/* Theme Switcher */}
             <div className="relative ml-2">
-              <Button
-                variant="ghost"
-                size="icon"
-                aria-label={!mounted ? "Loading theme..." : theme === "light" ? "Switch to dark mode" : "Switch to light mode"}
-                className=""
-                onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-              >
-                {!mounted ? (
-                  <Sun className="h-5 w-5" />
-                ) : theme === "light" ? (
-                  <Moon className="h-5 w-5" />
-                ) : (
-                  <Sun className="h-5 w-5" />
-                )}
-              </Button>
+              <ThemeToggle />
               {/* Optional: Add a dropdown for more theme options in the future */}
             </div>
           </div>
@@ -133,27 +125,15 @@ const Navbar = ({ activeSection = "home" }: NavbarProps) => {
               variant="ghost"
               size="icon"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-foreground/80 hover:text-primary"
+              className="text-foreground/80 dark:text-foreground/70 hover:text-primary dark:hover:text-primary"
               aria-label="Toggle menu"
             >
               {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </Button>
             {/* Theme Switcher for Mobile */}
-            <Button
-              variant="ghost"
-              size="icon"
-              aria-label={!mounted ? "Loading theme..." : theme === "light" ? "Switch to dark mode" : "Switch to light mode"}
-              onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-              className="ml-2"
-            >
-              {!mounted ? (
-                <Sun className="h-5 w-5" />
-              ) : theme === "light" ? (
-                <Moon className="h-5 w-5" />
-              ) : (
-                <Sun className="h-5 w-5" />
-              )}
-            </Button>
+            <div className="ml-2">
+              <ThemeToggle mobile={true} />
+            </div>
           </div>
         </div>
 
@@ -165,23 +145,30 @@ const Navbar = ({ activeSection = "home" }: NavbarProps) => {
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.2 }}
-              className="md:hidden border-t border-border/50"
+              className="md:hidden border-t border-border/50 dark:border-border/30"
             >
               <div className="py-4 space-y-2">
                 {navItems.map((item) => (
                   <button
                     key={item.id}
                     onClick={() => handleNavigation(item.id)}
-                    className={`block w-full text-left px-4 py-2 text-sm font-medium transition-colors hover:text-primary hover:bg-muted/50 rounded-md ${
-                      activeSection === item.id ? "text-primary bg-muted/50" : "text-foreground/70"
+                    className={`block w-full text-left px-4 py-2 text-sm font-medium transition-colors hover:text-primary dark:hover:text-primary hover:bg-muted/50 dark:hover:bg-muted/30 rounded-md ${
+                      activeSection === item.id 
+                        ? "text-primary dark:text-primary bg-muted/50 dark:bg-muted/30" 
+                        : "text-foreground/70 dark:text-foreground/80"
                     }`}
                   >
                     {item.label}
                   </button>
                 ))}
 
-                <div className="flex items-center justify-center space-x-4 pt-4 border-t border-border/50 mt-4">
-                  <Button variant="ghost" size="icon" asChild className="text-foreground/80 hover:text-primary">
+                <div className="flex items-center justify-center space-x-4 pt-4 border-t border-border/50 dark:border-border/30 mt-4">
+                  <Button 
+                    variant="ghost" 
+                    size="icon" 
+                    asChild 
+                    className="text-foreground/80 dark:text-foreground/70 hover:text-primary dark:hover:text-primary"
+                  >
                     <a
                       href="https://www.linkedin.com/in/mohan-giri-37b87a186/"
                       target="_blank"
@@ -191,7 +178,12 @@ const Navbar = ({ activeSection = "home" }: NavbarProps) => {
                       <Linkedin className="h-5 w-5" />
                     </a>
                   </Button>
-                  <Button variant="ghost" size="icon" asChild className="text-foreground/80 hover:text-primary">
+                  <Button 
+                    variant="ghost" 
+                    size="icon" 
+                    asChild 
+                    className="text-foreground/80 dark:text-foreground/70 hover:text-primary dark:hover:text-primary"
+                  >
                     <a
                       href="https://github.com/girimohan"
                       target="_blank"
@@ -201,21 +193,9 @@ const Navbar = ({ activeSection = "home" }: NavbarProps) => {
                       <Github className="h-5 w-5" />
                     </a>
                   </Button>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    aria-label={!mounted ? "Loading theme..." : theme === "light" ? "Switch to dark mode" : "Switch to light mode"}
-                    onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-                    className="ml-2"
-                  >
-                    {!mounted ? (
-                      <Sun className="h-5 w-5" />
-                    ) : theme === "light" ? (
-                      <Moon className="h-5 w-5" />
-                    ) : (
-                      <Sun className="h-5 w-5" />
-                    )}
-                  </Button>
+                  <div className="ml-2">
+                    <ThemeToggle mobile={true} />
+                  </div>
                 </div>
               </div>
             </motion.div>
