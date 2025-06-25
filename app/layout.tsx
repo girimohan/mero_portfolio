@@ -9,9 +9,9 @@ import type { Metadata } from "next"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Giri Mohan | Portfolio",
+  title: "Giri Mohan | ML Engineer & Full Stack Developer",
   description:
-    "Professional portfolio showcasing my projects and expertise in machine learning, web development, and data engineering.",
+    "ML Engineer and Full Stack Developer specializing in AI/ML solutions and modern web applications. Masters in Computer Science student at University of Helsinki.",
     generator: 'v0.dev'
 }
 

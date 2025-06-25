@@ -9,12 +9,21 @@ import { GraduationCap, Award, BookOpen } from "lucide-react"
 
 const education = [
   {
+    institution: "University of Helsinki",
+    degree: "Computer Science (AI, ML & Algorithms)",
+    period: "2025 - 2027",
+    level: "Master",
+    description:
+      "Advanced studies in Artificial Intelligence, Machine Learning, and Algorithms. Focusing on cutting-edge research in deep learning, computer vision, natural language processing, and algorithmic optimization.",
+    url: "https://www.helsinki.fi/en/",
+  },
+  {
     institution: "HAMK University of Applied Sciences",
     degree: "Computer Applications",
-    period: "2021-08-01 - 2024-12-31",
+    period: "2021-2024",
     level: "Bachelor",
     description:
-      "Specialized in Machine Learning and Artificial Intelligence applications, with a focus on computer vision and natural language processing technologies.",
+      "Specialized in Machine Learning and Artificial Intelligence applications, with a focus on computer vision and natural language processing technologies. Developed expertise in full stack development using modern tools and frameworks.",
     url: "https://www.hamk.fi/en/",
   },
 ]

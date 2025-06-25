@@ -9,10 +9,10 @@ const ProfessionalFooter: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* About Section */}
           <div className="md:col-span-2">
-            <h3 className="text-xl font-bold mb-4 text-foreground dark:text-foreground">Giri Mohan</h3>
+            <h3 className="text-xl font-bold mb-4 text-foreground dark:text-foreground">Mohan Giri</h3>
             <p className="text-foreground/70 dark:text-foreground/60 mb-4 max-w-md">
-              ML Engineer & Developer specializing in Computer Vision, NLP, and Full Stack Development. Passionate about
-              creating innovative solutions with cutting-edge technology.
+              ML Engineer & Full Stack Developer specializing in AI/ML solutions, Computer Vision, NLP, and modern web applications. 
+              Passionate about creating intelligent systems with cutting-edge technology.
             </p>
             <div className="flex items-center gap-2 text-foreground/60 dark:text-foreground/50 mb-2">
               <MapPin className="h-4 w-4" />
@@ -20,7 +20,7 @@ const ProfessionalFooter: React.FC = () => {
             </div>
             <div className="flex items-center gap-2 text-foreground/60 dark:text-foreground/50">
               <Mail className="h-4 w-4" />
-              <span>contact@girimohan.com</span>
+              <span>mohan_gi@hotmail.com</span>
             </div>
           </div>
 
@@ -96,7 +96,7 @@ const ProfessionalFooter: React.FC = () => {
 
         <div className="border-t border-border/50 mt-8 pt-8 text-center">
           <p className="text-foreground/60">
-            &copy; {new Date().getFullYear()} Giri Mohan. All rights reserved. Built with Next.js & TypeScript.
+            &copy; {new Date().getFullYear()} Mohan Giri. All rights reserved. Built with Next.js & TypeScript.
           </p>
         </div>
       </div>

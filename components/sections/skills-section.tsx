@@ -16,59 +16,70 @@ const skillLevels = {
 // Define skill categories with more favorable skill levels for job search
 const skillCategories = [
   {
-    name: "Machine Learning",
+    name: "Machine Learning & AI",
     icon: <Brain className="h-5 w-5" />,
     skills: [
       { name: "Computer Vision", level: skillLevels.ADVANCED },
       { name: "Deep Learning", level: skillLevels.ADVANCED },
-      { name: "Natural Language Processing", level: skillLevels.INTERMEDIATE },
+      { name: "Natural Language Processing", level: skillLevels.ADVANCED },
       { name: "PyTorch", level: skillLevels.ADVANCED },
       { name: "TensorFlow/Keras", level: skillLevels.INTERMEDIATE },
       { name: "YOLO Object Detection", level: skillLevels.EXPERT },
+      { name: "OpenCV", level: skillLevels.ADVANCED },
+      { name: "HuggingFace Transformers", level: skillLevels.ADVANCED },
+      { name: "RAG (Retrieval-Augmented Generation)", level: skillLevels.INTERMEDIATE },
+      { name: "Chatbot Development", level: skillLevels.INTERMEDIATE },
       { name: "Transfer Learning", level: skillLevels.ADVANCED },
       { name: "Model Deployment", level: skillLevels.INTERMEDIATE },
     ],
   },
   {
-    name: "Data Science",
-    icon: <ChartBar className="h-5 w-5" />,
-    skills: [
-      { name: "Data Analysis", level: skillLevels.ADVANCED },
-      { name: "Statistical Analysis", level: skillLevels.ADVANCED },
-      { name: "Pandas & NumPy", level: skillLevels.EXPERT },
-      { name: "Scikit-learn", level: skillLevels.ADVANCED },
-      { name: "Data Visualization", level: skillLevels.ADVANCED },
-      { name: "Feature Engineering", level: skillLevels.ADVANCED },
-      { name: "Time Series Analysis", level: skillLevels.INTERMEDIATE },
-      { name: "Exploratory Data Analysis", level: skillLevels.ADVANCED },
-    ],
-  },
-  {
-    name: "Programming",
+    name: "Full Stack Development",
     icon: <Code className="h-5 w-5" />,
     skills: [
-      { name: "Python", level: skillLevels.EXPERT },
-      { name: "SQL", level: skillLevels.ADVANCED },
-      { name: "JavaScript", level: skillLevels.INTERMEDIATE },
-      { name: "R", level: skillLevels.INTERMEDIATE },
-      { name: "Git & Version Control", level: skillLevels.ADVANCED },
-      { name: "Docker", level: skillLevels.INTERMEDIATE },
-      { name: "RESTful APIs", level: skillLevels.INTERMEDIATE },
-      { name: "Flask/Django", level: skillLevels.INTERMEDIATE },
+      { name: "React & Next.js", level: skillLevels.ADVANCED },
+      { name: "TypeScript", level: skillLevels.ADVANCED },
+      { name: "Node.js", level: skillLevels.INTERMEDIATE },
+      { name: "Django", level: skillLevels.INTERMEDIATE },
+      { name: "Flask", level: skillLevels.INTERMEDIATE },
+      { name: "RESTful APIs", level: skillLevels.ADVANCED },
+      { name: "Database Design", level: skillLevels.INTERMEDIATE },
+      { name: "Frontend Frameworks", level: skillLevels.ADVANCED },
+      { name: "Responsive Design", level: skillLevels.ADVANCED },
+      { name: "Web Testing", level: skillLevels.INTERMEDIATE },
+      { name: "Robot Framework", level: skillLevels.INTERMEDIATE },
+      { name: "Web Performance", level: skillLevels.INTERMEDIATE },
     ],
   },
   {
-    name: "Domain Knowledge",
+    name: "Programming & Tools",
+    icon: <ChartBar className="h-5 w-5" />,
+    skills: [
+      { name: "Python", level: skillLevels.EXPERT },
+      { name: "JavaScript", level: skillLevels.ADVANCED },
+      { name: "SQL", level: skillLevels.ADVANCED },
+      { name: "R Programming Language", level: skillLevels.INTERMEDIATE },
+      { name: "Git & Version Control", level: skillLevels.ADVANCED },
+      { name: "Docker", level: skillLevels.INTERMEDIATE },
+      { name: "Linux/Unix", level: skillLevels.INTERMEDIATE },
+      { name: "Cloud Platforms", level: skillLevels.INTERMEDIATE },
+      { name: "Big Data Technologies", level: skillLevels.INTERMEDIATE },
+      { name: "Data Science Tools", level: skillLevels.ADVANCED },
+      { name: "Data Analysis", level: skillLevels.ADVANCED },
+    ],
+  },
+  {
+    name: "Professional Skills",
     icon: <Lightbulb className="h-5 w-5" />,
     skills: [
-      { name: "Computer Vision Applications", level: skillLevels.ADVANCED },
-      { name: "MLOps", level: skillLevels.INTERMEDIATE },
-      { name: "Research Methodology", level: skillLevels.ADVANCED },
-      { name: "Data Ethics", level: skillLevels.INTERMEDIATE },
-      { name: "Industry Project Experience", level: skillLevels.ADVANCED },
-      { name: "Technical Documentation", level: skillLevels.ADVANCED },
       { name: "Problem Solving", level: skillLevels.ADVANCED },
+      { name: "Research & Development", level: skillLevels.ADVANCED },
+      { name: "Technical Documentation", level: skillLevels.ADVANCED },
+      { name: "Project Management", level: skillLevels.INTERMEDIATE },
       { name: "Team Collaboration", level: skillLevels.ADVANCED },
+      { name: "Agile Methodologies", level: skillLevels.INTERMEDIATE },
+      { name: "Code Review", level: skillLevels.INTERMEDIATE },
+      { name: "System Architecture", level: skillLevels.INTERMEDIATE },
     ],
   },
 ]
@@ -77,7 +88,7 @@ const skillCategories = [
 import { Brain, BarChartIcon as ChartBar, Code, Lightbulb } from "lucide-react"
 
 export default function SkillsSection() {
-  const [activeTab, setActiveTab] = useState("Machine Learning")
+  const [activeTab, setActiveTab] = useState("Machine Learning & AI")
   const [skills, setSkills] = useState<(typeof skillCategories)[0]["skills"]>([])
 
   // Load skills from localStorage if available
@@ -136,11 +147,11 @@ export default function SkillsSection() {
           <h2 className="text-3xl font-bold tracking-tight mb-4 dark:text-foreground">Technical Expertise</h2>
           <div className="w-24 h-0.5 bg-primary dark:bg-primary/80 mx-auto mb-6"></div>
           <p className="text-xl text-foreground/80 dark:text-foreground/70 max-w-2xl mx-auto">
-            As a Data Scientist and ML Engineer, I've developed expertise in various technologies and methodologies.
+            As an ML Engineer and Full Stack Developer, I've developed expertise in various technologies and methodologies.
           </p>
         </div>
 
-        <Tabs defaultValue="Machine Learning" className="w-full max-w-4xl mx-auto" onValueChange={handleTabChange}>
+        <Tabs defaultValue="Machine Learning & AI" className="w-full max-w-4xl mx-auto" onValueChange={handleTabChange}>
           <TabsList className="grid grid-cols-2 md:grid-cols-4 mb-8 bg-card dark:bg-card/50 p-1 rounded-lg">
             {skillCategories.map((category) => (
               <TabsTrigger

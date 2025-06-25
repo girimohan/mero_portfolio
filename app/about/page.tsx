@@ -1,8 +1,6 @@
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { Download } from "lucide-react"
 import Image from "next/image"
 
 export default function AboutPage() {
@@ -16,7 +14,7 @@ export default function AboutPage() {
               <div>
                 <h1 className="text-4xl font-bold mb-4">About Me</h1>
                 <p className="text-muted-foreground text-lg">
-                  Machine Learning Engineer and Full Stack Developer with a passion for building intelligent systems.
+                  ML Engineer and Full Stack Developer with a passion for building intelligent systems and scalable applications.
                 </p>
               </div>
 
@@ -24,14 +22,15 @@ export default function AboutPage() {
                 <h2 className="text-2xl font-semibold">Background</h2>
                 <p className="text-muted-foreground">
                   I am a Computer Applications graduate from HAMK University of Applied Sciences, specializing in
-                  Machine Learning and Full Stack Development. My academic journey has equipped me with a strong
-                  foundation in computer science principles, while my practical experience has honed my skills in
-                  developing end-to-end solutions.
+                  Machine Learning and Full Stack Development. Currently pursuing Masters in Computer Science 
+                  with specialization in AI, Machine Learning, and Algorithms at the University of Helsinki.
+                  My academic journey combined with practical experience has equipped me with a strong
+                  foundation in both theoretical and applied aspects of intelligent systems.
                 </p>
                 <p className="text-muted-foreground">
                   During my studies and professional work, I've successfully delivered multiple projects that combine
-                  machine learning with practical applications. My focus has been on creating systems that solve
-                  real-world problems with high accuracy and reliability.
+                  machine learning with practical applications. My focus is on creating scalable AI-powered systems 
+                  and modern web applications that solve real-world problems with high accuracy and reliability.
                 </p>
               </div>
 
@@ -39,9 +38,20 @@ export default function AboutPage() {
                 <h2 className="text-2xl font-semibold">Education</h2>
                 <div className="space-y-4">
                   <div className="bg-background border rounded-lg p-4">
+                    <h3 className="font-medium">Master of Science in Computer Science</h3>
+                    <p className="text-muted-foreground">University of Helsinki</p>
+                    <p className="text-sm text-muted-foreground">2025 - 2027 (Starting)</p>
+                    <p className="text-sm text-muted-foreground mt-1">
+                      <Badge variant="secondary" className="text-xs">Specialization: AI, Machine Learning & Algorithms</Badge>
+                    </p>
+                  </div>
+                  <div className="bg-background border rounded-lg p-4">
                     <h3 className="font-medium">Bachelor of Computer Applications</h3>
                     <p className="text-muted-foreground">HAMK University of Applied Sciences</p>
-                    <p className="text-sm text-muted-foreground">2020 - 2024</p>
+                    <p className="text-sm text-muted-foreground">2021 - 2024</p>
+                    <p className="text-sm text-muted-foreground mt-1">
+                      Focus: Machine Learning, AI applications, and Full Stack Development with modern tools
+                    </p>
                   </div>
                   <div className="bg-background border rounded-lg p-4">
                     <h3 className="font-medium">Machine Learning Specialization</h3>
@@ -77,12 +87,7 @@ export default function AboutPage() {
                 </div>
               </div>
 
-              <div>
-                <Button className="flex items-center gap-2">
-                  <Download className="h-4 w-4" />
-                  Download CV
-                </Button>
-              </div>
+
             </div>
 
             <div className="space-y-8">
@@ -91,7 +96,7 @@ export default function AboutPage() {
                   <Image src="/placeholder.svg?height=400&width=300" alt="Mohan Giri" fill className="object-cover" />
                 </div>
                 <h2 className="text-xl font-semibold mb-2">Mohan Giri</h2>
-                <p className="text-muted-foreground mb-4">ML Engineer & Developer based in Helsinki, Finland</p>
+                <p className="text-muted-foreground mb-4">ML Engineer & Full Stack Developer based in Helsinki, Finland</p>
                 <div className="space-y-2">
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Email:</span>

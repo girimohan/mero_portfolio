@@ -62,9 +62,25 @@ const Navbar = ({ activeSection = "home" }: NavbarProps) => {
           <div className="flex-shrink-0">
             <button
               onClick={() => handleNavigation("home")}
-              className="text-2xl font-bold text-primary dark:text-primary hover:text-primary/80 dark:hover:text-primary/90 transition-colors"
+              className="group relative flex items-center justify-center"
             >
-              Giri Mohan
+              {/* Logo Background with Gradient */}
+              <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-primary via-primary/90 to-primary/80 dark:from-primary dark:via-primary/90 dark:to-primary/70 shadow-lg group-hover:shadow-primary/25 dark:group-hover:shadow-primary/20 transition-all duration-300 group-hover:scale-105">
+                {/* Inner glow effect */}
+                <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-white/10 to-transparent opacity-50" />
+                
+                {/* MG Text */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="text-white font-bold text-sm tracking-tight">MG</span>
+                </div>
+              </div>
+              
+              {/* Optional: Hover tooltip */}
+              <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+                <div className="bg-background/90 dark:bg-background/80 backdrop-blur-sm text-foreground/80 text-xs px-2 py-1 rounded border border-border/50 whitespace-nowrap">
+                  Mohan Giri
+                </div>
+              </div>
             </button>
           </div>
 

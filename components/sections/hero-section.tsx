@@ -6,7 +6,7 @@ import { motion, useScroll, useTransform } from "framer-motion"
 import { useInView } from "react-intersection-observer"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { ArrowDown, Github, Linkedin, Mail, FileText } from "lucide-react"
+import { ArrowDown, Github, Linkedin, Mail } from "lucide-react"
 
 export default function HeroSection() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -64,34 +64,22 @@ export default function HeroSection() {
                 className="inline-block"
               >
                 <Badge className="px-4 py-1 text-lg mb-6 bg-primary/10 text-primary border-primary/20 dark:bg-primary/20 dark:border-primary/30 rounded-full">
-                  Full-Stack Developer
+                  ML Engineer & Full Stack Developer
                 </Badge>
               </motion.div>
 
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                Hi, I'm <span className="primary-text-gradient">Giri Mohan</span>
+                Hi, I'm <span className="primary-text-gradient">Mohan Giri</span>
               </h1>
 
               <p className="text-xl text-foreground/80 dark:text-foreground/70 mb-8 leading-relaxed">
-                A passionate full-stack developer and machine learning enthusiast with expertise in building modern web
-                applications and AI-powered solutions. Based in Finland, I combine technical skills with creative
-                problem-solving to deliver exceptional digital experiences.
+                ML Engineer and Full Stack Developer specializing in AI/ML solutions and modern web applications. 
+                Starting Masters in Computer Science (AI, ML & Algorithms) at University of Helsinki. 
+                Based in Finland, I combine practical experience with advanced academic knowledge to build 
+                intelligent systems and scalable solutions.
               </p>
 
-              <div className="flex flex-wrap gap-4 mb-8">
-                <Button size="lg" className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90">
-                  <Mail className="h-4 w-4" />
-                  Contact Me
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="gap-2 border-secondary text-secondary hover:bg-secondary hover:text-secondary-foreground"
-                >
-                  <FileText className="h-4 w-4" />
-                  Download CV
-                </Button>
-              </div>
+
 
               <div className="flex gap-4">
                 <Button
@@ -142,7 +130,7 @@ export default function HeroSection() {
                 <div className="absolute inset-2 profile-hexagon overflow-hidden bg-card dark:bg-card/80">
                   <Image
                     src="/images/profile/profile.png"
-                    alt="Giri Mohan"
+                    alt="Mohan Giri"
                     fill
                     className="object-cover object-center"
                     priority

@@ -1,6 +1,6 @@
-# Giri Mohan - Portfolio Website
+# Giri Mohan - ML Engineer & Full Stack Developer Portfolio
 
-Modern portfolio website built with Next.js 15, TypeScript, and Tailwind CSS.
+Modern portfolio website showcasing AI/ML projects and full stack development work. Built with Next.js 15, TypeScript, and Tailwind CSS.
 
 ## 🛠️ Tech Stack
 
