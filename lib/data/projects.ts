@@ -5,6 +5,7 @@ export interface Project {
   description: string
   tags: string[]
   image?: string
+  images?: string[] // Optional array for multiple images
   subtitle?: string
   category?: string
   demoUrl?: string
@@ -66,29 +67,86 @@ export const projects: Project[] = [
   },
   {
     id: 3,
-    slug: "academic-thesis-extraction-summarization",
-    title: "Academic Thesis Extraction & Summarization",
-    subtitle: "NLP Research Project",
+    slug: "entity-extraction-clustering",
+    title: "Smart Entity Extraction & Document Clustering",
+    subtitle: "Professional No-Code NLP App",
     description:
-      "Developed an automated system to extract thesis information from theseus.fi and summarize academic concepts. Utilized Hugging Face transformers, T5 model for summarization, and BERT for text classification. Built React Native mobile app with Flask API backend. Processed 10,000+ thesis abstracts with high-quality automated summaries.",
-    image: "/images/ui/placeholder.svg?height=400&width=600",
-    tags: ["Hugging Face", "T5", "BERT", "React Native", "Flask", "NLP", "Transformers"],
-    category: "ml",
-    demoUrl: "#",
+      "A professional, no-code web app for extracting structured information from unstructured documents (PDFs), generating semantic embeddings, and clustering similar documents. Built with state-of-the-art NLP (spaCy transformer, Hugging Face, sentence-transformers) and a modern Streamlit UI, this app makes advanced document analytics accessible to everyone.",
+    image: "/images/projects/entity-extraction-clustering-demo.png",
+    images: [
+      "/images/projects/entity-extraction-clustering-demo.png",
+      "/images/projects/doc_embedding_n_clustering.png",
+      "/images/projects/entity_distribution2.png",
+      "/images/projects/extracted_entities2.png"
+    ],
+    tags: [
+      "Python", "NLP", "spaCy", "HuggingFace", "sentence-transformers", "Streamlit", "PyMuPDF", "KMeans", "PCA", "Clustering", "Data Science"
+    ],
+    category: "nlp",
+    demoUrl: "https://huggingface.co/spaces/Mo11an/entity_extraction",
+    githubUrl: "https://github.com/girimohan/entity_extraction",
     content: `
-      <p>This project focused on automating the extraction and summarization of academic content using advanced NLP techniques.</p>
-      
-      <h3>NLP Pipeline</h3>
-      <p>The system implements:</p>
+      <h3>Key Features</h3>
       <ul>
-        <li>Web scraping for data collection from theseus.fi</li>
-        <li>T5 transformer model for text summarization</li>
-        <li>BERT for classification and entity recognition</li>
-        <li>Custom preprocessing and postprocessing pipelines</li>
+        <li>Robust PDF text extraction (PyMuPDF)</li>
+        <li>Advanced Named Entity Recognition (spaCy transformer model)</li>
+        <li>Interactive entity table and CSV export</li>
+        <li>Document embedding and clustering (sentence-transformers, KMeans, PCA)</li>
+        <li>Cluster visualization (2D scatter plot)</li>
+        <li>Clean, professional UI ready for portfolio and GitHub</li>
+        <li>Deployed on Hugging Face Spaces for live demo</li>
       </ul>
-      
-      <h3>Mobile Application</h3>
-      <p>Built a React Native app providing intuitive access to processed academic content with Flask API backend.</p>
+      <div class="project-links" style="margin: 1.5em 0;">
+        <a href="https://huggingface.co/spaces/Mo11an/entity_extraction" target="_blank" rel="noopener" style="display:inline-block;margin-right:1em;padding:0.5em 1em;background:#f5f5f5;border-radius:8px;color:#111;font-weight:500;text-decoration:none;box-shadow:0 1px 4px #0001;">🔗 Live Demo on Hugging Face Spaces</a>
+        <a href="https://github.com/girimohan/entity_extraction" target="_blank" rel="noopener" style="display:inline-block;padding:0.5em 1em;background:#f5f5f5;border-radius:8px;color:#111;font-weight:500;text-decoration:none;box-shadow:0 1px 4px #0001;">💻 GitHub Repository</a>
+      </div>
+      <div class="project-images-grid">
+        <figure>
+          <img src="/images/projects/entity-extraction-clustering-demo.png" alt="App Main UI Screenshot" style="max-width:100%;border-radius:12px;box-shadow:0 2px 8px #0002;" />
+          <figcaption>Main UI: Upload PDFs, extract entities, and view results interactively.</figcaption>
+        </figure>
+        <figure>
+          <img src="/images/projects/doc_embedding_n_clustering.png" alt="Document Embedding & Clustering Visualization" style="max-width:100%;border-radius:12px;box-shadow:0 2px 8px #0002;" />
+          <figcaption>Document Embedding & Clustering: 2D scatter plot of clustered documents.</figcaption>
+        </figure>
+        <figure>
+          <img src="/images/projects/entity_distribution2.png" alt="Entity Distribution Visualization" style="max-width:100%;border-radius:12px;box-shadow:0 2px 8px #0002;" />
+          <figcaption>Entity Distribution: Visualize frequency and types of extracted entities.</figcaption>
+        </figure>
+        <figure>
+          <img src="/images/projects/extracted_entities2.png" alt="Extracted Entities Table" style="max-width:100%;border-radius:12px;box-shadow:0 2px 8px #0002;" />
+          <figcaption>Extracted Entities Table: Interactive table with CSV export option.</figcaption>
+        </figure>
+      </div>
+      <h3>Use Cases</h3>
+      <ul>
+        <li>Business & M&A due diligence</li>
+        <li>Academic research clustering</li>
+        <li>Legal document organization</li>
+        <li>Competitive intelligence</li>
+        <li>HR resume analysis</li>
+        <li>Government/policy analytics</li>
+        <li>Media & journalism research</li>
+      </ul>
+      <h3>Future Directions</h3>
+      <ul>
+        <li>HTML/URL extraction (BeautifulSoup)</li>
+        <li>Advanced clustering (HDBSCAN)</li>
+        <li>Cosine similarity heatmap</li>
+        <li>Entity wordclouds</li>
+        <li>Cluster summaries</li>
+        <li>Vector search (FAISS/ChromaDB)</li>
+        <li>LangChain integration for LLM Q&A</li>
+        <li>User authentication</li>
+        <li>API endpoints</li>
+        <li>UI polish and extensive testing</li>
+      </ul>
+      <h3>Highlights</h3>
+      <ul>
+        <li>Built for data scientists, researchers, legal teams, business analysts, HR, journalists, and more</li>
+        <li>Ready for portfolio and professional use</li>
+        <li>Clean codebase, extensible, and well-documented</li>
+      </ul>
     `,
   },
   {
@@ -197,6 +255,90 @@ export const projects: Project[] = [
       
       <h3>Framework Benefits</h3>
       <p>Achieved 95% test coverage with automated regression testing, significantly reducing manual testing effort.</p>
+    `,
+  },
+  {
+    id: 8,
+    slug: "entity-extraction-clustering-advanced",
+    title: "Smart Entity Extraction & Document Clustering",
+    subtitle: "Professional No-Code NLP App",
+    description:
+      "A professional, no-code web app for extracting structured information from unstructured documents (PDFs), generating semantic embeddings, and clustering similar documents. Built with state-of-the-art NLP (spaCy transformer, Hugging Face, sentence-transformers) and a modern Streamlit UI, this app makes advanced document analytics accessible to everyone. Try the live demo on Hugging Face Spaces or explore the code on GitHub.",
+    image: "/images/projects/entity-extraction-clustering-demo.png",
+    images: [
+      "/images/projects/entity-extraction-clustering-demo.png",
+      "/images/projects/doc_embedding_n_clustering.png",
+      "/images/projects/entity_distribution2.png",
+      "/images/projects/extracted_entities2.png"
+    ],
+    tags: [
+      "Python", "NLP", "spaCy", "HuggingFace", "sentence-transformers", "Streamlit", "PyMuPDF", "KMeans", "PCA", "Clustering", "Data Science"
+    ],
+    category: "nlp",
+    demoUrl: "https://huggingface.co/spaces/Mo11an/entity_extraction",
+    githubUrl: "https://github.com/girimohan/entity_extraction",
+    content: `
+      <h3>Key Features</h3>
+      <ul>
+        <li>Robust PDF text extraction (PyMuPDF)</li>
+        <li>Advanced Named Entity Recognition (spaCy transformer model)</li>
+        <li>Interactive entity table and CSV export</li>
+        <li>Document embedding and clustering (sentence-transformers, KMeans, PCA)</li>
+        <li>Cluster visualization (2D scatter plot)</li>
+        <li>Clean, professional UI ready for portfolio and GitHub</li>
+        <li>Deployed on Hugging Face Spaces for live demo</li>
+      </ul>
+      <div class="project-links" style="margin: 1.5em 0;">
+        <a href="https://huggingface.co/spaces/Mo11an/entity_extraction" target="_blank" rel="noopener" style="display:inline-block;margin-right:1em;padding:0.5em 1em;background:#f5f5f5;border-radius:8px;color:#111;font-weight:500;text-decoration:none;box-shadow:0 1px 4px #0001;">🔗 Live Demo on Hugging Face Spaces</a>
+        <a href="https://github.com/girimohan/entity_extraction" target="_blank" rel="noopener" style="display:inline-block;padding:0.5em 1em;background:#f5f5f5;border-radius:8px;color:#111;font-weight:500;text-decoration:none;box-shadow:0 1px 4px #0001;">💻 GitHub Repository</a>
+      </div>
+      <div class="project-images-grid">
+        <figure>
+          <img src="/images/projects/entity-extraction-clustering-demo.png" alt="App Main UI Screenshot" style="max-width:100%;border-radius:12px;box-shadow:0 2px 8px #0002;" />
+          <figcaption>Main UI: Upload PDFs, extract entities, and view results interactively.</figcaption>
+        </figure>
+        <figure>
+          <img src="/images/projects/doc_embedding_n_clustering.png" alt="Document Embedding & Clustering Visualization" style="max-width:100%;border-radius:12px;box-shadow:0 2px 8px #0002;" />
+          <figcaption>Document Embedding & Clustering: 2D scatter plot of clustered documents.</figcaption>
+        </figure>
+        <figure>
+          <img src="/images/projects/entity_distribution2.png" alt="Entity Distribution Visualization" style="max-width:100%;border-radius:12px;box-shadow:0 2px 8px #0002;" />
+          <figcaption>Entity Distribution: Visualize frequency and types of extracted entities.</figcaption>
+        </figure>
+        <figure>
+          <img src="/images/projects/extracted_entities2.png" alt="Extracted Entities Table" style="max-width:100%;border-radius:12px;box-shadow:0 2px 8px #0002;" />
+          <figcaption>Extracted Entities Table: Interactive table with CSV export option.</figcaption>
+        </figure>
+      </div>
+      <h3>Use Cases</h3>
+      <ul>
+        <li>Business & M&A due diligence</li>
+        <li>Academic research clustering</li>
+        <li>Legal document organization</li>
+        <li>Competitive intelligence</li>
+        <li>HR resume analysis</li>
+        <li>Government/policy analytics</li>
+        <li>Media & journalism research</li>
+      </ul>
+      <h3>Future Directions</h3>
+      <ul>
+        <li>HTML/URL extraction (BeautifulSoup)</li>
+        <li>Advanced clustering (HDBSCAN)</li>
+        <li>Cosine similarity heatmap</li>
+        <li>Entity wordclouds</li>
+        <li>Cluster summaries</li>
+        <li>Vector search (FAISS/ChromaDB)</li>
+        <li>LangChain integration for LLM Q&A</li>
+        <li>User authentication</li>
+        <li>API endpoints</li>
+        <li>UI polish and extensive testing</li>
+      </ul>
+      <h3>Highlights</h3>
+      <ul>
+        <li>Built for data scientists, researchers, legal teams, business analysts, HR, journalists, and more</li>
+        <li>Ready for portfolio and professional use</li>
+        <li>Clean codebase, extensible, and well-documented</li>
+      </ul>
     `,
   },
 ]

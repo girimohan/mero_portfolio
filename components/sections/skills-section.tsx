@@ -16,70 +16,59 @@ const skillLevels = {
 // Define skill categories with more favorable skill levels for job search
 const skillCategories = [
   {
-    name: "Machine Learning & AI",
+    name: "Machine Learning",
     icon: <Brain className="h-5 w-5" />,
     skills: [
       { name: "Computer Vision", level: skillLevels.ADVANCED },
       { name: "Deep Learning", level: skillLevels.ADVANCED },
-      { name: "Natural Language Processing", level: skillLevels.ADVANCED },
+      { name: "Natural Language Processing", level: skillLevels.INTERMEDIATE },
       { name: "PyTorch", level: skillLevels.ADVANCED },
       { name: "TensorFlow/Keras", level: skillLevels.INTERMEDIATE },
       { name: "YOLO Object Detection", level: skillLevels.EXPERT },
-      { name: "OpenCV", level: skillLevels.ADVANCED },
-      { name: "HuggingFace Transformers", level: skillLevels.ADVANCED },
-      { name: "RAG (Retrieval-Augmented Generation)", level: skillLevels.INTERMEDIATE },
-      { name: "Chatbot Development", level: skillLevels.INTERMEDIATE },
       { name: "Transfer Learning", level: skillLevels.ADVANCED },
       { name: "Model Deployment", level: skillLevels.INTERMEDIATE },
     ],
   },
   {
-    name: "Full Stack Development",
-    icon: <Code className="h-5 w-5" />,
-    skills: [
-      { name: "React & Next.js", level: skillLevels.ADVANCED },
-      { name: "TypeScript", level: skillLevels.ADVANCED },
-      { name: "Node.js", level: skillLevels.INTERMEDIATE },
-      { name: "Django", level: skillLevels.INTERMEDIATE },
-      { name: "Flask", level: skillLevels.INTERMEDIATE },
-      { name: "RESTful APIs", level: skillLevels.ADVANCED },
-      { name: "Database Design", level: skillLevels.INTERMEDIATE },
-      { name: "Frontend Frameworks", level: skillLevels.ADVANCED },
-      { name: "Responsive Design", level: skillLevels.ADVANCED },
-      { name: "Web Testing", level: skillLevels.INTERMEDIATE },
-      { name: "Robot Framework", level: skillLevels.INTERMEDIATE },
-      { name: "Web Performance", level: skillLevels.INTERMEDIATE },
-    ],
-  },
-  {
-    name: "Programming & Tools",
+    name: "Data Science",
     icon: <ChartBar className="h-5 w-5" />,
     skills: [
-      { name: "Python", level: skillLevels.EXPERT },
-      { name: "JavaScript", level: skillLevels.ADVANCED },
-      { name: "SQL", level: skillLevels.ADVANCED },
-      { name: "R Programming Language", level: skillLevels.INTERMEDIATE },
-      { name: "Git & Version Control", level: skillLevels.ADVANCED },
-      { name: "Docker", level: skillLevels.INTERMEDIATE },
-      { name: "Linux/Unix", level: skillLevels.INTERMEDIATE },
-      { name: "Cloud Platforms", level: skillLevels.INTERMEDIATE },
-      { name: "Big Data Technologies", level: skillLevels.INTERMEDIATE },
-      { name: "Data Science Tools", level: skillLevels.ADVANCED },
       { name: "Data Analysis", level: skillLevels.ADVANCED },
+      { name: "Statistical Analysis", level: skillLevels.ADVANCED },
+      { name: "Pandas & NumPy", level: skillLevels.EXPERT },
+      { name: "Scikit-learn", level: skillLevels.ADVANCED },
+      { name: "Data Visualization", level: skillLevels.ADVANCED },
+      { name: "Feature Engineering", level: skillLevels.ADVANCED },
+      { name: "Time Series Analysis", level: skillLevels.INTERMEDIATE },
+      { name: "Exploratory Data Analysis", level: skillLevels.ADVANCED },
     ],
   },
   {
-    name: "Professional Skills",
+    name: "Programming",
+    icon: <Code className="h-5 w-5" />,
+    skills: [
+      { name: "Python", level: skillLevels.EXPERT },
+      { name: "SQL", level: skillLevels.ADVANCED },
+      { name: "JavaScript", level: skillLevels.INTERMEDIATE },
+      { name: "R", level: skillLevels.INTERMEDIATE },
+      { name: "Git & Version Control", level: skillLevels.ADVANCED },
+      { name: "Docker", level: skillLevels.INTERMEDIATE },
+      { name: "RESTful APIs", level: skillLevels.INTERMEDIATE },
+      { name: "Flask/Django", level: skillLevels.INTERMEDIATE },
+    ],
+  },
+  {
+    name: "Domain Knowledge",
     icon: <Lightbulb className="h-5 w-5" />,
     skills: [
-      { name: "Problem Solving", level: skillLevels.ADVANCED },
-      { name: "Research & Development", level: skillLevels.ADVANCED },
+      { name: "Computer Vision Applications", level: skillLevels.ADVANCED },
+      { name: "MLOps", level: skillLevels.INTERMEDIATE },
+      { name: "Research Methodology", level: skillLevels.ADVANCED },
+      { name: "Data Ethics", level: skillLevels.INTERMEDIATE },
+      { name: "Industry Project Experience", level: skillLevels.ADVANCED },
       { name: "Technical Documentation", level: skillLevels.ADVANCED },
-      { name: "Project Management", level: skillLevels.INTERMEDIATE },
+      { name: "Problem Solving", level: skillLevels.ADVANCED },
       { name: "Team Collaboration", level: skillLevels.ADVANCED },
-      { name: "Agile Methodologies", level: skillLevels.INTERMEDIATE },
-      { name: "Code Review", level: skillLevels.INTERMEDIATE },
-      { name: "System Architecture", level: skillLevels.INTERMEDIATE },
     ],
   },
 ]
@@ -88,7 +77,7 @@ const skillCategories = [
 import { Brain, BarChartIcon as ChartBar, Code, Lightbulb } from "lucide-react"
 
 export default function SkillsSection() {
-  const [activeTab, setActiveTab] = useState("Machine Learning & AI")
+  const [activeTab, setActiveTab] = useState("Machine Learning")
   const [skills, setSkills] = useState<(typeof skillCategories)[0]["skills"]>([])
 
   // Load skills from localStorage if available
@@ -141,23 +130,23 @@ export default function SkillsSection() {
   }
 
   return (
-    <section className="py-20 bg-background dark:bg-background/80" id="skills">
+    <section className="py-20 bg-background" id="skills">
       <div className="container px-4 md:px-6">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold tracking-tight mb-4 dark:text-foreground">Technical Expertise</h2>
-          <div className="w-24 h-0.5 bg-primary dark:bg-primary/80 mx-auto mb-6"></div>
-          <p className="text-xl text-foreground/80 dark:text-foreground/70 max-w-2xl mx-auto">
-            As an ML Engineer and Full Stack Developer, I've developed expertise in various technologies and methodologies.
+          <h2 className="text-3xl font-bold tracking-tight mb-4">Technical Expertise</h2>
+          <div className="w-24 h-0.5 bg-primary mx-auto mb-6"></div>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            As a Data Scientist and ML Engineer, I've developed expertise in various technologies and methodologies.
           </p>
         </div>
 
-        <Tabs defaultValue="Machine Learning & AI" className="w-full max-w-4xl mx-auto" onValueChange={handleTabChange}>
-          <TabsList className="grid grid-cols-2 md:grid-cols-4 mb-8 bg-card dark:bg-card/50 p-1 rounded-lg">
+        <Tabs defaultValue="Machine Learning" className="w-full max-w-4xl mx-auto" onValueChange={handleTabChange}>
+          <TabsList className="grid grid-cols-2 md:grid-cols-4 mb-8 bg-card p-1 rounded-lg">
             {skillCategories.map((category) => (
               <TabsTrigger
                 key={category.name}
                 value={category.name}
-                className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground dark:data-[state=inactive]:text-foreground/70 rounded-md"
+                className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground rounded-md"
               >
                 <div className="flex items-center gap-2">
                   {category.icon}
@@ -170,18 +159,18 @@ export default function SkillsSection() {
           {skillCategories.map((category) => (
             <TabsContent key={category.name} value={category.name} className="space-y-8">
               <div className="flex items-center justify-center mb-6">
-                <div className="bg-primary/20 dark:bg-primary/30 p-3 rounded-full">{getCategoryIcon()}</div>
-                <h3 className="text-xl font-medium ml-3 dark:text-foreground">{category.name} Skills</h3>
+                <div className="bg-primary/20 p-3 rounded-full">{getCategoryIcon()}</div>
+                <h3 className="text-xl font-medium ml-3">{category.name} Skills</h3>
               </div>
 
-              <Card className="border border-primary/20 dark:border-primary/30 dark:bg-card/50">
+              <Card className="border border-primary/20">
                 <CardContent className="p-6">
                   {/* Expert Skills */}
                   {groupedSkills[skillLevels.EXPERT].length > 0 && (
                     <div className="mb-8">
                       <div className="flex items-center mb-4">
-                        <Award className="h-5 w-5 text-primary dark:text-primary/90 mr-2" />
-                        <h4 className="text-lg font-medium dark:text-foreground">Expert Level</h4>
+                        <Award className="h-5 w-5 text-primary mr-2" />
+                        <h4 className="text-lg font-medium">Expert Level</h4>
                       </div>
                       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                         {groupedSkills[skillLevels.EXPERT].map((skill) => (
@@ -190,10 +179,10 @@ export default function SkillsSection() {
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.3 }}
-                            className="flex items-center bg-primary/10 dark:bg-primary/20 rounded-md p-3"
+                            className="flex items-center bg-primary/10 rounded-md p-3"
                           >
-                            <Award className="h-4 w-4 text-primary dark:text-primary/90 mr-2 flex-shrink-0" />
-                            <span className="font-medium text-sm dark:text-foreground/90">{skill.name}</span>
+                            <Award className="h-4 w-4 text-primary mr-2 flex-shrink-0" />
+                            <span className="font-medium text-sm">{skill.name}</span>
                           </motion.div>
                         ))}
                       </div>
@@ -204,8 +193,8 @@ export default function SkillsSection() {
                   {groupedSkills[skillLevels.ADVANCED].length > 0 && (
                     <div className="mb-8">
                       <div className="flex items-center mb-4">
-                        <Zap className="h-5 w-5 text-secondary dark:text-secondary/90 mr-2" />
-                        <h4 className="text-lg font-medium dark:text-foreground">Advanced Level</h4>
+                        <Zap className="h-5 w-5 text-secondary mr-2" />
+                        <h4 className="text-lg font-medium">Advanced Level</h4>
                       </div>
                       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                         {groupedSkills[skillLevels.ADVANCED].map((skill) => (
@@ -214,10 +203,10 @@ export default function SkillsSection() {
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.3 }}
-                            className="flex items-center bg-secondary/10 dark:bg-secondary/20 rounded-md p-3"
+                            className="flex items-center bg-secondary/10 rounded-md p-3"
                           >
-                            <Zap className="h-4 w-4 text-secondary dark:text-secondary/90 mr-2 flex-shrink-0" />
-                            <span className="font-medium text-sm dark:text-foreground/90">{skill.name}</span>
+                            <Zap className="h-4 w-4 text-secondary mr-2 flex-shrink-0" />
+                            <span className="font-medium text-sm">{skill.name}</span>
                           </motion.div>
                         ))}
                       </div>
@@ -228,8 +217,8 @@ export default function SkillsSection() {
                   {groupedSkills[skillLevels.INTERMEDIATE].length > 0 && (
                     <div>
                       <div className="flex items-center mb-4">
-                        <Check className="h-5 w-5 text-foreground/60 dark:text-foreground/50 mr-2" />
-                        <h4 className="text-lg font-medium dark:text-foreground">Intermediate Level</h4>
+                        <Check className="h-5 w-5 text-muted-foreground mr-2" />
+                        <h4 className="text-lg font-medium">Intermediate Level</h4>
                       </div>
                       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                         {groupedSkills[skillLevels.INTERMEDIATE].map((skill) => (
@@ -238,10 +227,10 @@ export default function SkillsSection() {
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.3 }}
-                            className="flex items-center bg-muted dark:bg-muted/60 rounded-md p-3"
+                            className="flex items-center bg-muted rounded-md p-3"
                           >
-                            <Check className="h-4 w-4 text-foreground/60 dark:text-foreground/50 mr-2 flex-shrink-0" />
-                            <span className="font-medium text-sm dark:text-foreground/80">{skill.name}</span>
+                            <Check className="h-4 w-4 text-muted-foreground mr-2 flex-shrink-0" />
+                            <span className="font-medium text-sm">{skill.name}</span>
                           </motion.div>
                         ))}
                       </div>
