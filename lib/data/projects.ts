@@ -66,84 +66,6 @@ export const projects: Project[] = [
     `,
   },
   {
-    id: 3,
-    slug: "entity-extraction-clustering",
-    title: "Smart Entity Extraction & Document Clustering",
-    subtitle: "Professional No-Code NLP App",
-    description:
-      "A professional, no-code web app for extracting structured information from unstructured documents (PDFs), generating semantic embeddings, and clustering similar documents. Built with state-of-the-art NLP (spaCy transformer, Hugging Face, sentence-transformers) and a modern Streamlit UI, this app makes advanced document analytics accessible to everyone.",
-    image: "/images/projects/entity-extraction-clustering-demo.png",
-    images: [
-      "/images/projects/entity-extraction-clustering-demo.png",
-      "/images/projects/doc_embedding_n_clustering.png",
-      "/images/projects/entity_distribution2.png",
-      "/images/projects/extracted_entities2.png"
-    ],
-    tags: [
-      "Python", "NLP", "spaCy", "HuggingFace", "sentence-transformers", "Streamlit", "PyMuPDF", "KMeans", "PCA", "Clustering", "Data Science"
-    ],
-    category: "nlp",
-    demoUrl: "https://huggingface.co/spaces/Mo11an/entity_extraction",
-    githubUrl: "https://github.com/girimohan/entity_extraction",
-    content: `
-      <h3>Key Features</h3>
-      <ul>
-        <li>Robust PDF text extraction (PyMuPDF)</li>
-        <li>Advanced Named Entity Recognition (spaCy transformer model)</li>
-        <li>Interactive entity table and CSV export</li>
-        <li>Document embedding and clustering (sentence-transformers, KMeans, PCA)</li>
-        <li>Cluster visualization (2D scatter plot)</li>
-        <li>Clean, professional UI ready for portfolio and GitHub</li>
-        <li>Deployed on Hugging Face Spaces for live demo</li>
-      </ul>
-      <div class="project-links" style="margin: 1.5em 0;">
-        <a href="https://huggingface.co/spaces/Mo11an/entity_extraction" target="_blank" rel="noopener" style="display:inline-block;margin-right:1em;padding:0.5em 1em;background:#f5f5f5;border-radius:8px;color:#111;font-weight:500;text-decoration:none;box-shadow:0 1px 4px #0001;">🔗 Live Demo on Hugging Face Spaces</a>
-        <a href="https://github.com/girimohan/entity_extraction" target="_blank" rel="noopener" style="display:inline-block;padding:0.5em 1em;background:#f5f5f5;border-radius:8px;color:#111;font-weight:500;text-decoration:none;box-shadow:0 1px 4px #0001;">💻 GitHub Repository</a>
-      </div>
-      <div class="project-images-grid">
-        <figure>
-          <img src="/images/projects/entity-extraction-clustering-demo.png" alt="App Main UI Screenshot" style="max-width:100%;border-radius:12px;box-shadow:0 2px 8px #0002;" />
-          <figcaption>Main UI: Upload PDFs, extract entities, and view results interactively.</figcaption>
-        </figure>
-        <figure>
-          <img src="/images/projects/doc_embedding_n_clustering.png" alt="Document Embedding & Clustering Visualization" style="max-width:100%;border-radius:12px;box-shadow:0 2px 8px #0002;" />
-          <figcaption>Document Embedding & Clustering: 2D scatter plot of clustered documents.</figcaption>
-        </figure>
-        <figure>
-          <img src="/images/projects/entity_distribution2.png" alt="Entity Distribution Visualization" style="max-width:100%;border-radius:12px;box-shadow:0 2px 8px #0002;" />
-          <figcaption>Entity Distribution: Visualize frequency and types of extracted entities.</figcaption>
-        </figure>
-        <figure>
-          <img src="/images/projects/extracted_entities2.png" alt="Extracted Entities Table" style="max-width:100%;border-radius:12px;box-shadow:0 2px 8px #0002;" />
-          <figcaption>Extracted Entities Table: Interactive table with CSV export option.</figcaption>
-        </figure>
-      </div>
-      <h3>Use Cases</h3>
-      <ul>
-        <li>Business & M&A due diligence</li>
-        <li>Academic research clustering</li>
-        <li>Legal document organization</li>
-        <li>Competitive intelligence</li>
-        <li>HR resume analysis</li>
-        <li>Government/policy analytics</li>
-        <li>Media & journalism research</li>
-      </ul>
-      <h3>Future Directions</h3>
-      <ul>
-        <li>HTML/URL extraction (BeautifulSoup)</li>
-        <li>Advanced clustering (HDBSCAN)</li>
-        <li>Cosine similarity heatmap</li>
-        <li>Entity wordclouds</li>
-        <li>Cluster summaries</li>
-        <li>Vector search (FAISS/ChromaDB)</li>
-        <li>LangChain integration for LLM Q&A</li>
-        <li>User authentication</li>
-        <li>API endpoints</li>
-        <li>UI polish and extensive testing</li>
-      </ul>
-    `,
-  },
-  {
     id: 4,
     slug: "tree-species-identification-system",
     title: "Tree Species Identification System",
@@ -252,7 +174,7 @@ export const projects: Project[] = [
     `,
   },
   {
-    id: 8,
+    id: 3,
     slug: "entity-extraction-clustering-advanced",
     title: "Smart Entity Extraction & Document Clustering",
     subtitle: "Professional No-Code NLP App",
@@ -266,7 +188,7 @@ export const projects: Project[] = [
     tags: [
       "Python", "NLP", "spaCy", "HuggingFace", "sentence-transformers", "Streamlit", "PyMuPDF", "KMeans", "PCA", "Clustering", "Data Science"
     ],
-    category: "nlp",
+    category: "ml",
     demoUrl: "https://huggingface.co/spaces/Mo11an/entity_extraction",
     githubUrl: "https://github.com/girimohan/entity_extraction",
     content: `
@@ -316,13 +238,13 @@ export const projects: Project[] = [
     `,
   },
   {
-    id: 9,
+    id: 8,
     slug: "sambit-business-portfolio",
     title: "SamBit - Business Portfolio Website",
     subtitle: "Professional Business Website",
     description:
       "A sophisticated business portfolio website for SamBit, a digital solutions company targeting Finnish SMEs. Built with modern React architecture and deployed on Vercel, featuring responsive design, professional UI/UX, and optimized performance for business credibility and lead generation.",
-    image: "/images/ui/placeholder.svg?height=400&width=600",
+    image: "/images/projects/sambit-ss.png",
     tags: ["React", "TypeScript", "Vite", "Tailwind CSS", "Vercel"],
     category: "web",
     demoUrl: "https://sambit-rho.vercel.app/",
