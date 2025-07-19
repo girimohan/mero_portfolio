@@ -315,6 +315,44 @@ export const projects: Project[] = [
       </ul>
     `,
   },
+  {
+    id: 9,
+    slug: "sambit-business-portfolio",
+    title: "SamBit - Business Portfolio Website",
+    subtitle: "Professional Business Website",
+    description:
+      "A sophisticated business portfolio website for SamBit, a digital solutions company targeting Finnish SMEs. Built with modern React architecture and deployed on Vercel, featuring responsive design, professional UI/UX, and optimized performance for business credibility and lead generation.",
+    image: "/images/ui/placeholder.svg?height=400&width=600",
+    tags: ["React", "TypeScript", "Vite", "Tailwind CSS", "Vercel"],
+    category: "web",
+    demoUrl: "https://sambit-rho.vercel.app/",
+    content: `
+      <p>A professional business portfolio website designed for SamBit, showcasing digital solutions for Finnish small and medium enterprises.</p>
+      
+      <h3>Key Features</h3>
+      <ul>
+        <li>Responsive mobile-first design optimized for all devices</li>
+        <li>Professional business sections: Services, Portfolio, About, Contact</li>
+        <li>Functional contact form with validation</li>
+        <li>SEO-optimized with proper meta tags and semantic HTML</li>
+        <li>High-performance build with optimized loading times</li>
+        <li>Professional color scheme and typography</li>
+      </ul>
+      
+      <h3>Technical Implementation</h3>
+      <p>Built with modern web technologies:</p>
+      <ul>
+        <li>React 18 with TypeScript for type safety</li>
+        <li>Vite for fast development and optimized builds</li>
+        <li>Tailwind CSS for responsive styling</li>
+        <li>Component-based architecture</li>
+        <li>Deployed on Vercel with automatic CI/CD</li>
+      </ul>
+      
+      <h3>Business Impact</h3>
+      <p>The website effectively communicates SamBit's value proposition to Finnish SMEs, featuring clear pricing (€199 for static websites), quick delivery promises (5-7 days), and professional credibility showcase.</p>
+    `,
+  },
 ]
 
 export function getProjects(): Project[] {
