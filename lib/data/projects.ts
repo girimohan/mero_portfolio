@@ -20,7 +20,7 @@ export const projects: Project[] = [
     subtitle: "Bachelor's Thesis Project",
     description:
       "Developed an intelligent parking management system combining YOLOv5l-based computer vision (97.9% detection precision) with Rasa chatbot interface (92% intent recognition). Implemented transfer learning with synthetic data augmentation on PKLot dataset, integrated Flask REST API for video processing, and created Streamlit web interface for real-time monitoring.",
-    image: "/images/ui/placeholder.svg?height=400&width=600",
+    image: "/images/projects/yolo_parking.jpg",
     tags: ["Python", "PyTorch", "Rasa", "Flask", "Streamlit", "OpenCV", "YOLO"],
     category: "ml",
     demoUrl: "#",    content: `
@@ -45,7 +45,7 @@ export const projects: Project[] = [
     subtitle: "HAMK Internship Project",
     description:
       "Implemented YOLO (You Only Look Once) for real-time object detection during internship at HAMK University. Built using YOLOv5, OpenCV for video processing, and Django for web interface. Achieved 95% accuracy with 30+ FPS processing speed. Integrated custom dataset training and model optimization for production deployment.",
-    image: "/images/ui/placeholder.svg?height=400&width=600",
+    image: "/images/projects/metal_plate.JPG",
     tags: ["YOLOv5", "OpenCV", "Django", "Python", "Computer Vision", "Real-time Processing"],
     category: "ml",
     demoUrl: "#",
