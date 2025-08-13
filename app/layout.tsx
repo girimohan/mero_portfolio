@@ -30,8 +30,10 @@ export default function RootLayout({
               (function() {
                 try {
                   var storageTheme = localStorage.getItem('theme');
-                  var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                  if (storageTheme === 'dark' || (!storageTheme && systemDark)) {
+                  if (!storageTheme) {
+                    document.documentElement.classList.add('dark');
+                    document.documentElement.classList.remove('light');
+                  } else if (storageTheme === 'dark') {
                     document.documentElement.classList.add('dark');
                     document.documentElement.classList.remove('light');
                   } else {
@@ -48,8 +50,8 @@ export default function RootLayout({
       </head>
       <body className={`${inter.className} bg-background text-foreground antialiased`}>
         <ThemeProvider 
-          defaultTheme="system"
-          enableSystem={true}
+          defaultTheme="dark"
+          enableSystem={false}
           storageKey="theme"
           forcedTheme={undefined}
         >
