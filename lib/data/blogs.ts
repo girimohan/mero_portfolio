@@ -134,7 +134,7 @@ export const blogPosts: BlogPost[] = [
     slug: "change-in-coding-modern-days",
     title: "Change in Coding in Modern Days: How Coders Survive",
     summary: "A reflection on the rapid evolution of coding practices, tools, and the mindset required for developers to thrive in today's tech landscape.",
-    image: "/images/ui/placeholder.jpg",
+  image: "/images/blog/modern-coding-image.jpg",
     date: "June 13, 2025",
     readTime: "7 min read",
     category: "Tech Reflections",
