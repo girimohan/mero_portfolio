@@ -126,7 +126,7 @@ export const projects: Project[] = [
     subtitle: "Full-Stack Web Application",
     description:
       "Designed and developed comprehensive gym management system with membership management, class scheduling, and payment processing. Built with modern web technologies including responsive design and real-time updates.",
-    image: "/images/ui/placeholder.svg?height=400&width=600",
+  image: "/images/projects/gym-image.jpg",
     tags: ["Bootstrap", "JavaScript", "HTML", "PHP", "CSS", "MySQL"],
     category: "web",
     demoUrl: "#",
