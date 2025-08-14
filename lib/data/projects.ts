@@ -72,7 +72,7 @@ export const projects: Project[] = [
     subtitle: "Computer Vision Project",
     description:
       "Developed and implemented a computer vision system for automated tree species identification using YOLOv5 deep learning model. Achieved 96.9% precision in identifying five Nordic tree species (Birch, Maple, Pine, Rowan, Spruce). Created an interactive web interface for real-time tree detection and classification.",
-    image: "/images/ui/placeholder.svg?height=400&width=600",
+    image: "/images/projects/birch-image.jpg",
     tags: ["PyTorch", "YOLOv5", "Python", "Gradio", "Computer Vision"],
     category: "ml",
     demoUrl: "#",
@@ -99,7 +99,7 @@ export const projects: Project[] = [
     subtitle: "NLP System",
     description:
       "Developed a real-time speech sentiment analysis system integrating Wav2Vec2 and RoBERTa deep learning models. Implemented audio processing, speech-to-text conversion, and sentiment classification pipeline with visualization capabilities using PyTorch, Transformers, and librosa.",
-    image: "/images/ui/placeholder.svg?height=400&width=600",
+    image: "/images/projects/speech-sentiment-image.png",
     tags: ["Deep Learning", "NLP", "Speech Recognition", "PyTorch", "Sentiment Analysis"],
     category: "ml",
     demoUrl: "#",
@@ -153,7 +153,7 @@ export const projects: Project[] = [
     subtitle: "Quality Assurance Project",
     description:
       "Implemented comprehensive automated testing framework for Verkkokauppa.com e-commerce platform using Robot Framework and Selenium. Developed test cases for critical user flows including product search, cart functionality, and checkout process with 95% test coverage.",
-    image: "/images/ui/placeholder.svg?height=400&width=600",
+    image: "/images/projects/Selenium-automation-testing1.png",
     tags: ["Robot Framework", "Selenium", "Python", "Testing", "QA", "Automation"],
     category: "testing",
     demoUrl: "#",
