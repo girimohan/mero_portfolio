@@ -3,15 +3,19 @@
 import { useState, useRef, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import Image from "next/image"
-import { motion, useScroll, useTransform } from "framer-motion"
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
 import { useInView } from "react-intersection-observer"
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Calendar, Clock, ArrowRight } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Calendar, Clock, ArrowRight, ChevronDown, ChevronUp } from "lucide-react"
 import { getBlogPosts, type BlogPost } from "@/lib/data/blogs"
+
+const INITIAL_DISPLAY_COUNT = 6
 
 export default function BlogSection() {
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([])
+  const [displayCount, setDisplayCount] = useState(INITIAL_DISPLAY_COUNT)
   const router = useRouter()
   const [ref, inView] = useInView({
     triggerOnce: false,
@@ -30,6 +34,17 @@ export default function BlogSection() {
   useEffect(() => {
     setBlogPosts(getBlogPosts())
   }, [])
+
+  const displayedPosts = blogPosts.slice(0, displayCount)
+  const hasMore = displayCount < blogPosts.length
+
+  const handleLoadMore = () => {
+    setDisplayCount(prev => prev + 6)
+  }
+
+  const handleShowLess = () => {
+    setDisplayCount(INITIAL_DISPLAY_COUNT)
+  }
 
   // Function to handle blog card click - navigate to blog page
   const handleBlogClick = (post: BlogPost) => {
@@ -80,14 +95,16 @@ export default function BlogSection() {
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {blogPosts.map((post, index) => (
-              <motion.div
-                key={post.id}
-                initial={{ opacity: 0, y: 30 }}
-                animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                transition={{ duration: 0.5, delay: 0.2 * index }}
-                whileHover={{ y: -10 }}
-              >
+            <AnimatePresence>
+              {displayedPosts.map((post, index) => (
+                <motion.div
+                  key={post.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.5, delay: 0.1 * (index % 6) }}
+                  whileHover={{ y: -10 }}
+                >
                 <Card
                   className="overflow-hidden cursor-pointer group h-full flex flex-col bg-card/80 dark:bg-card/60 backdrop-blur-sm border border-border/50 dark:border-border/30 hover:border-primary/30 dark:hover:border-primary/40 transition-all hover:shadow-lg hover:shadow-primary/5 dark:hover:shadow-primary/10"
                   onClick={() => handleBlogClick(post)}
@@ -123,7 +140,40 @@ export default function BlogSection() {
                 </Card>
               </motion.div>
             ))}
+            </AnimatePresence>
           </div>
+
+          {/* Load More / Show Less Button */}
+          {blogPosts.length > INITIAL_DISPLAY_COUNT && (
+            <motion.div
+              className="flex justify-center mt-12"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+            >
+              {hasMore ? (
+                <Button
+                  onClick={handleLoadMore}
+                  variant="outline"
+                  size="lg"
+                  className="group border-primary/30 hover:border-primary hover:bg-primary/10 dark:border-primary/40 dark:hover:bg-primary/20"
+                >
+                  <span>Load More Articles</span>
+                  <ChevronDown className="ml-2 h-4 w-4 transition-transform group-hover:translate-y-1" />
+                </Button>
+              ) : (
+                <Button
+                  onClick={handleShowLess}
+                  variant="outline"
+                  size="lg"
+                  className="group border-primary/30 hover:border-primary hover:bg-primary/10 dark:border-primary/40 dark:hover:bg-primary/20"
+                >
+                  <span>Show Less</span>
+                  <ChevronUp className="ml-2 h-4 w-4 transition-transform group-hover:-translate-y-1" />
+                </Button>
+              )}
+            </motion.div>
+          )}
         </motion.div>
       </div>
     </section>

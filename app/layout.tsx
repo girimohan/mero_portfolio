@@ -11,9 +11,9 @@ import type { Metadata } from "next"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Giri Mohan | ML Engineer & Full Stack Developer",
+  title: "Mohan Giri | AI/ML Engineer",
   description:
-    "ML Engineer and Full Stack Developer specializing in AI/ML solutions and modern web applications. Masters in Computer Science student at University of Helsinki.",
+    "AI/ML Engineer specializing in Machine Learning, Agentic AI Systems, and Data Science. Masters in Computer Science (AI & Algorithms) at University of Helsinki.",
   generator: 'v0.dev'
 }
 
@@ -33,8 +33,8 @@ export default function RootLayout({
                 try {
                   var storageTheme = localStorage.getItem('theme');
                   if (!storageTheme) {
-                    document.documentElement.classList.add('dark');
-                    document.documentElement.classList.remove('light');
+                    document.documentElement.classList.add('light');
+                    document.documentElement.classList.remove('dark');
                   } else if (storageTheme === 'dark') {
                     document.documentElement.classList.add('dark');
                     document.documentElement.classList.remove('light');
@@ -52,7 +52,7 @@ export default function RootLayout({
       </head>
       <body className={`${inter.className} bg-background text-foreground antialiased`}>
         <ThemeProvider 
-          defaultTheme="dark"
+          defaultTheme="light"
           enableSystem={false}
           storageKey="theme"
           forcedTheme={undefined}

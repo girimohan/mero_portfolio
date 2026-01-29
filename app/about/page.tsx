@@ -14,7 +14,7 @@ export default function AboutPage() {
               <div>
                 <h1 className="text-4xl font-bold mb-4">About Me</h1>
                 <p className="text-muted-foreground text-lg">
-                  ML Engineer and Full Stack Developer with a passion for building intelligent systems and scalable applications.
+                  AI/ML Engineer with a passion for building intelligent systems, agentic AI, and scalable ML solutions.
                 </p>
               </div>
 
@@ -92,25 +92,43 @@ export default function AboutPage() {
 
             <div className="space-y-8">
               <div className="bg-background border rounded-xl p-6">
-                <div className="relative w-full h-64 mb-4 rounded-lg overflow-hidden">
-                  <Image src="/placeholder.svg?height=400&width=300" alt="Mohan Giri" fill className="object-cover" />
+                <div className="relative w-full aspect-square mb-4 rounded-lg overflow-hidden">
+                  <Image 
+                    src="/images/profile/profile.png" 
+                    alt="Mohan Giri" 
+                    fill 
+                    className="object-cover object-center" 
+                    priority
+                  />
                 </div>
                 <h2 className="text-xl font-semibold mb-2">Mohan Giri</h2>
-                <p className="text-muted-foreground mb-4">ML Engineer & Full Stack Developer based in Helsinki, Finland</p>
-                <div className="space-y-2">
-                  <div className="flex justify-between">
+                <p className="text-muted-foreground mb-4">AI/ML Engineer based in Helsinki, Finland</p>
+                <div className="space-y-3">
+                  <div className="flex justify-between items-center">
                     <span className="text-muted-foreground">Email:</span>
-                    <span>contact@mohangiri.com</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">LinkedIn:</span>
-                    <a href="#" className="text-primary hover:underline">
-                      @mohangiri
+                    <a href="mailto:mohan_gi@hotmail.com" className="text-primary hover:underline">
+                      mohan_gi@hotmail.com
                     </a>
                   </div>
-                  <div className="flex justify-between">
+                  <div className="flex justify-between items-center">
+                    <span className="text-muted-foreground">LinkedIn:</span>
+                    <a 
+                      href="https://www.linkedin.com/in/mohan-giri-37b87a186/" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-primary hover:underline"
+                    >
+                      mohan-giri
+                    </a>
+                  </div>
+                  <div className="flex justify-between items-center">
                     <span className="text-muted-foreground">GitHub:</span>
-                    <a href="#" className="text-primary hover:underline">
+                    <a 
+                      href="https://github.com/girimohan" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-primary hover:underline"
+                    >
                       @girimohan
                     </a>
                   </div>
@@ -146,10 +164,10 @@ export default function AboutPage() {
                     <div className="flex flex-wrap gap-2">
                       <Badge>Git</Badge>
                       <Badge>Docker</Badge>
+                      <Badge>Kubernetes</Badge>
                       <Badge>AWS</Badge>
                       <Badge>PostgreSQL</Badge>
                       <Badge>MongoDB</Badge>
-                      <Badge>PowerBI</Badge>
                     </div>
                   </div>
                 </div>

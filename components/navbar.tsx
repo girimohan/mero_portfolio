@@ -36,7 +36,12 @@ const Navbar = ({ activeSection = "home" }: NavbarProps) => {
     setIsMenuOpen(false)
   }
 
-  const handleNavigation = (sectionId: string) => {
+  const handleNavigation = (sectionId: string, isPage?: boolean) => {
+    if (isPage) {
+      router.push(`/${sectionId}`)
+      setIsMenuOpen(false)
+      return
+    }
     if (isHomePage) {
       scrollToSection(sectionId)
     } else {
@@ -44,8 +49,9 @@ const Navbar = ({ activeSection = "home" }: NavbarProps) => {
     }
   }
 
-  const navItems = [
+  const navItems: { id: string; label: string; isPage?: boolean }[] = [
     { id: "home", label: "Home" },
+    { id: "about", label: "About", isPage: true },
     { id: "skills", label: "Skills" },
     { id: "projects", label: "Projects" },
     { id: "experience", label: "Experience" },
@@ -89,9 +95,9 @@ const Navbar = ({ activeSection = "home" }: NavbarProps) => {
             {navItems.map((item) => (
               <button
                 key={item.id}
-                onClick={() => handleNavigation(item.id)}
+                onClick={() => handleNavigation(item.id, item.isPage)}
                 className={`text-sm font-medium transition-colors hover:text-primary dark:hover:text-primary ${
-                  activeSection === item.id 
+                  activeSection === item.id || (item.isPage && pathname === `/${item.id}`)
                     ? "text-primary dark:text-primary" 
                     : "text-foreground/70 dark:text-foreground/80"
                 }`}
@@ -167,9 +173,9 @@ const Navbar = ({ activeSection = "home" }: NavbarProps) => {
                 {navItems.map((item) => (
                   <button
                     key={item.id}
-                    onClick={() => handleNavigation(item.id)}
+                    onClick={() => handleNavigation(item.id, item.isPage)}
                     className={`block w-full text-left px-4 py-2 text-sm font-medium transition-colors hover:text-primary dark:hover:text-primary hover:bg-muted/50 dark:hover:bg-muted/30 rounded-md ${
-                      activeSection === item.id 
+                      activeSection === item.id || (item.isPage && pathname === `/${item.id}`)
                         ? "text-primary dark:text-primary bg-muted/50 dark:bg-muted/30" 
                         : "text-foreground/70 dark:text-foreground/80"
                     }`}

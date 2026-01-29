@@ -8,6 +8,7 @@ import HeroSection from "@/components/sections/hero-section"
 import FeaturedSection from "@/components/sections/featured-section"
 import SkillsSection from "@/components/sections/skills-section"
 import ProjectsSection from "@/components/sections/projects-section"
+import LabSection from "@/components/sections/lab-section"
 import ExperienceSection from "@/components/sections/experience-section"
 import BlogSection from "@/components/sections/blog-section"
 import EducationSection from "@/components/sections/education-section"
@@ -23,7 +24,7 @@ export default function Home() {
   const router = useRouter()
 
   useEffect(() => {
-    const sections = ["home", "featured", "skills", "projects", "experience", "education", "blog", "contact"]
+    const sections = ["home", "featured", "skills", "projects", "lab", "experience", "education", "blog", "contact"]
 
     const handleScroll = () => {
       const pageYOffset = window.scrollY
@@ -95,6 +96,10 @@ export default function Home() {
             <ProjectsSection />
           </section>
 
+          <section id="lab">
+            <LabSection />
+          </section>
+
           <section id="experience">
             <ExperienceSection />
           </section>
@@ -118,10 +123,10 @@ export default function Home() {
         <AnimatePresence>
           {showScrollTop && (
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 20 }}
-              transition={{ duration: 0.2 }}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              transition={{ duration: 0.3, type: "spring", stiffness: 300 }}
               className="fixed bottom-6 right-6 z-50"
             >
               <TooltipProvider>
@@ -130,12 +135,13 @@ export default function Home() {
                     <Button
                       onClick={scrollToTop}
                       size="icon"
-                      className="h-12 w-12 rounded-full shadow-lg bg-primary hover:bg-primary/90 text-primary-foreground"
+                      className="h-14 w-14 rounded-full shadow-xl bg-primary hover:bg-primary/90 text-primary-foreground border-2 border-primary-foreground/20 hover:scale-110 transition-transform duration-300"
+                      aria-label="Scroll to top"
                     >
-                      <ArrowUp className="h-5 w-5" />
+                      <ArrowUp className="h-6 w-6" />
                     </Button>
                   </TooltipTrigger>
-                  <TooltipContent side="left">
+                  <TooltipContent side="left" className="font-medium">
                     <p>Back to top</p>
                   </TooltipContent>
                 </Tooltip>

@@ -64,7 +64,7 @@ export default function HeroSection() {
                 className="inline-block"
               >
                 <Badge className="px-4 py-1 text-lg mb-6 bg-primary/10 text-primary border-primary/20 dark:bg-primary/20 dark:border-primary/30 rounded-full">
-                  ML Engineer & Full Stack Developer
+                  AI/ML Engineer
                 </Badge>
               </motion.div>
 
@@ -73,19 +73,41 @@ export default function HeroSection() {
               </h1>
 
               <p className="text-xl text-foreground/80 dark:text-foreground/70 mb-8 leading-relaxed">
-                ML Engineer and Full Stack Developer specializing in AI/ML solutions and modern web applications. 
+                AI/ML Engineer specializing in Machine Learning, Agentic AI systems, and intelligent automation. 
                 Starting Masters in Computer Science (AI, ML & Algorithms) at University of Helsinki. 
                 Based in Finland, I combine practical experience with advanced academic knowledge to build 
                 intelligent systems and scalable solutions.
               </p>
 
-
-
-              <div className="flex gap-4">
+              {/* Primary CTA Buttons */}
+              <div className="flex flex-wrap gap-4 mb-8">
                 <Button
-                  variant="ghost"
+                  size="lg"
+                  className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-6 py-3 rounded-full shadow-lg hover:shadow-primary/25 transition-all duration-300 hover:scale-105"
+                  onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+                >
+                  View My Projects
+                  <ArrowDown className="ml-2 h-4 w-4 rotate-[-90deg]" />
+                </Button>
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="border-primary/50 text-foreground hover:bg-primary/10 dark:hover:bg-primary/20 font-semibold px-6 py-3 rounded-full transition-all duration-300 hover:scale-105"
+                  asChild
+                >
+                  <a href="/images/profile/resume_mohan.pdf" download="Mohan_Giri_Resume.pdf">
+                    Download Resume
+                  </a>
+                </Button>
+              </div>
+
+              {/* Social Links */}
+              <div className="flex items-center gap-3">
+                <span className="text-sm text-foreground/60 dark:text-foreground/50 mr-2">Connect:</span>
+                <Button
+                  variant="outline"
                   size="icon"
-                  className="rounded-full h-10 w-10 hover:text-primary hover:bg-primary/10 dark:hover:bg-primary/20"
+                  className="rounded-full h-11 w-11 border-border/50 hover:border-primary hover:text-primary hover:bg-primary/10 dark:hover:bg-primary/20 transition-all duration-300"
                   aria-label="GitHub"
                   asChild
                 >
@@ -94,9 +116,9 @@ export default function HeroSection() {
                   </a>
                 </Button>
                 <Button
-                  variant="ghost"
+                  variant="outline"
                   size="icon"
-                  className="rounded-full h-10 w-10 hover:text-primary hover:bg-primary/10 dark:hover:bg-primary/20"
+                  className="rounded-full h-11 w-11 border-border/50 hover:border-primary hover:text-primary hover:bg-primary/10 dark:hover:bg-primary/20 transition-all duration-300"
                   aria-label="LinkedIn"
                   asChild
                 >
@@ -105,9 +127,9 @@ export default function HeroSection() {
                   </a>
                 </Button>
                 <Button
-                  variant="ghost"
+                  variant="outline"
                   size="icon"
-                  className="rounded-full h-10 w-10 hover:text-primary hover:bg-primary/10 dark:hover:bg-primary/20"
+                  className="rounded-full h-11 w-11 border-border/50 hover:border-primary hover:text-primary hover:bg-primary/10 dark:hover:bg-primary/20 transition-all duration-300"
                   aria-label="Email"
                   asChild
                 >

@@ -415,7 +415,8 @@ export const projects: Project[] = [
 ]
 
 export function getProjects(): Project[] {
-  return projects
+  // Sort by id descending (higher id = more recent)
+  return [...projects].sort((a, b) => Number(b.id) - Number(a.id))
 }
 
 export function getProject(id: string): Project | undefined {
@@ -423,6 +424,7 @@ export function getProject(id: string): Project | undefined {
 }
 
 export function getProjectsByCategory(category: string): Project[] {
-  if (category === "all") return projects
-  return projects.filter(project => project.category === category)
+  const filtered = category === "all" ? projects : projects.filter(project => project.category === category)
+  // Sort by id descending (higher id = more recent)
+  return [...filtered].sort((a, b) => Number(b.id) - Number(a.id))
 }

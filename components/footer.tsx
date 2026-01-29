@@ -11,7 +11,7 @@ const ProfessionalFooter: React.FC = () => {
           <div className="md:col-span-2">
             <h3 className="text-xl font-bold mb-4 text-foreground dark:text-foreground">Mohan Giri</h3>
             <p className="text-foreground/70 dark:text-foreground/60 mb-4 max-w-md">
-              ML Engineer & Full Stack Developer specializing in AI/ML solutions, Computer Vision, NLP, and modern web applications. 
+              AI/ML Engineer specializing in Machine Learning, Agentic AI, Computer Vision, and intelligent systems. 
               Passionate about creating intelligent systems with cutting-edge technology.
             </p>
             <div className="flex items-center gap-2 text-foreground/60 dark:text-foreground/50 mb-2">

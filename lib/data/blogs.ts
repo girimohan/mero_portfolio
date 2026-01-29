@@ -215,7 +215,12 @@ export const blogPosts: BlogPost[] = [
 ]
 
 export function getBlogPosts(): BlogPost[] {
-  return blogPosts
+  // Sort by date descending (most recent first)
+  return [...blogPosts].sort((a, b) => {
+    const dateA = new Date(a.date).getTime()
+    const dateB = new Date(b.date).getTime()
+    return dateB - dateA
+  })
 }
 
 export function getBlogPost(id: string): BlogPost | undefined {

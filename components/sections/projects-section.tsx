@@ -3,17 +3,21 @@
 import { useState, useRef, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import Image from "next/image"
-import { motion, useScroll, useTransform } from "framer-motion"
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
 import { useInView } from "react-intersection-observer"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, ChevronDown, ChevronUp } from "lucide-react"
 import { getProjects, getProjectsByCategory, type Project } from "@/lib/data/projects"
+
+const INITIAL_DISPLAY_COUNT = 6
 
 export default function ProjectsSection() {
   const [projects, setProjects] = useState<Project[]>([])
   const [category, setCategory] = useState("all")
+  const [displayCount, setDisplayCount] = useState(INITIAL_DISPLAY_COUNT)
   const router = useRouter()
   const [ref, inView] = useInView({
     triggerOnce: false,
@@ -34,6 +38,21 @@ export default function ProjectsSection() {
   }, [])
 
   const filteredProjects = getProjectsByCategory(category)
+  const displayedProjects = filteredProjects.slice(0, displayCount)
+  const hasMore = displayCount < filteredProjects.length
+
+  // Reset display count when category changes
+  useEffect(() => {
+    setDisplayCount(INITIAL_DISPLAY_COUNT)
+  }, [category])
+
+  const handleLoadMore = () => {
+    setDisplayCount(prev => prev + 6)
+  }
+
+  const handleShowLess = () => {
+    setDisplayCount(INITIAL_DISPLAY_COUNT)
+  }
 
   // Function to handle project card click - navigate to project page
   const handleProjectClick = (project: Project) => {
@@ -110,14 +129,16 @@ export default function ProjectsSection() {
 
           {/* Projects Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredProjects.map((project, index) => (
-              <motion.div
-                key={project.id}
-                initial={{ opacity: 0, y: 30 }}
-                animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                transition={{ duration: 0.5, delay: 0.1 * index }}
-                whileHover={{ y: -10 }}
-              >                <Card
+            <AnimatePresence>
+              {displayedProjects.map((project, index) => (
+                <motion.div
+                  key={project.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.5, delay: 0.1 * (index % 6) }}
+                  whileHover={{ y: -10 }}
+                >                <Card
                   className="overflow-hidden cursor-pointer group h-full flex flex-col bg-card/80 dark:bg-card/60 backdrop-blur-sm border border-border/50 dark:border-border/30 hover:border-primary/30 dark:hover:border-primary/40 transition-all hover:shadow-lg hover:shadow-primary/5 dark:hover:shadow-primary/10"
                   onClick={() => handleProjectClick(project)}
                 >
@@ -163,7 +184,40 @@ export default function ProjectsSection() {
                 </Card>
               </motion.div>
             ))}
+            </AnimatePresence>
           </div>
+
+          {/* Load More / Show Less Button */}
+          {filteredProjects.length > INITIAL_DISPLAY_COUNT && (
+            <motion.div
+              className="flex justify-center mt-12"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+            >
+              {hasMore ? (
+                <Button
+                  onClick={handleLoadMore}
+                  variant="outline"
+                  size="lg"
+                  className="group border-primary/30 hover:border-primary hover:bg-primary/10 dark:border-primary/40 dark:hover:bg-primary/20"
+                >
+                  <span>Load More Projects</span>
+                  <ChevronDown className="ml-2 h-4 w-4 transition-transform group-hover:translate-y-1" />
+                </Button>
+              ) : (
+                <Button
+                  onClick={handleShowLess}
+                  variant="outline"
+                  size="lg"
+                  className="group border-primary/30 hover:border-primary hover:bg-primary/10 dark:border-primary/40 dark:hover:bg-primary/20"
+                >
+                  <span>Show Less</span>
+                  <ChevronUp className="ml-2 h-4 w-4 transition-transform group-hover:-translate-y-1" />
+                </Button>
+              )}
+            </motion.div>
+          )}
         </motion.div>
       </div>
     </section>
