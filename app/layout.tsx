@@ -14,7 +14,8 @@ export const metadata: Metadata = {
   title: "Giri Mohan | ML Engineer & Full Stack Developer",
   description:
     "ML Engineer and Full Stack Developer specializing in AI/ML solutions and modern web applications. Masters in Computer Science student at University of Helsinki.",
-    generator: 'v0.dev'
+  generator: 'v0.dev'
+}
 }
 
 export default function RootLayout({
