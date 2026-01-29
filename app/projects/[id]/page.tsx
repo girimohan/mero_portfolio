@@ -104,12 +104,12 @@ export default function ProjectPage() {
                   <p className="text-xl text-foreground/70 mb-6">{project.subtitle}</p>
                 )}
 
-                <div className="relative aspect-video w-full overflow-hidden rounded-lg mb-8">
+                <div className="relative aspect-video w-full overflow-hidden rounded-lg mb-8 bg-muted">
                   <Image
                     src={project.image || "/images/ui/placeholder.svg?height=400&width=600"}
                     alt={project.title}
                     fill
-                    className="object-cover"
+                    className="object-contain"
                   />
                 </div>
 

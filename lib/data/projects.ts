@@ -389,7 +389,7 @@ export const projects: Project[] = [
     subtitle: "ML Competition Project - University of Helsinki",
     description:
       "Developed machine learning models to classify New Particle Formation events from atmospheric data in a Kaggle competition. Achieved 5th place among 149 teams with 93.1% accuracy through advanced feature engineering and ensemble methods, reducing 102 features to 12 most significant predictors.",
-    image: "/images/projects/npf-classification.png",
+    image: "/images/projects/npf_classification.png",
     tags: ["Python", "scikit-learn", "Feature Engineering", "Random Forest", "Bayesian Inference"],
     category: "ml",
     githubUrl: "https://github.com/girimohan/npf_classification",
