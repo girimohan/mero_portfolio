@@ -382,6 +382,36 @@ export const projects: Project[] = [
       </ul>
     `,
   },
+  {
+    id: 10,
+    slug: "npf-classification",
+    title: "NPF Classification",
+    subtitle: "ML Competition Project - University of Helsinki",
+    description:
+      "Developed machine learning models to classify New Particle Formation events from atmospheric data in a Kaggle competition. Achieved 5th place among 149 teams with 93.1% accuracy through advanced feature engineering and ensemble methods, reducing 102 features to 12 most significant predictors.",
+    image: "/images/projects/npf-classification.png",
+    tags: ["Python", "scikit-learn", "Feature Engineering", "Random Forest", "Bayesian Inference"],
+    category: "ml",
+    githubUrl: "https://github.com/girimohan/npf_classification",
+    content: `
+      <p>This atmospheric science project applies machine learning to predict New Particle Formation (NPF) events from complex atmospheric measurements. Developed for the University of Helsinki's machine learning course Kaggle competition, the solution demonstrates expertise in feature engineering and handling high-dimensional scientific data.</p>
+      
+      <h3>Problem & Approach</h3>
+      <p>The challenge involved classifying NPF events from 102 atmospheric features with severe class imbalance. I implemented a multi-stage pipeline combining statistical feature selection, tree-based methods, and L1 regularization to identify the 12 most predictive features—reducing dimensionality by 88% while maintaining accuracy.</p>
+      
+      <h3>Technical Implementation</h3>
+      <p>Built ensemble models using Logistic Regression and Random Forest classifiers with optimized hyperparameters. Applied cross-validation and PCA for robust evaluation. Implemented Bayesian inference to quantify prediction uncertainty and custom class weighting to handle data imbalance effectively.</p>
+      
+      <h3>Results & Impact</h3>
+      <ul>
+        <li>Ranked 5th out of 149 competing teams</li>
+        <li>93.1% accuracy on binary classification task</li>
+        <li>70.2% accuracy on multi-class classification</li>
+        <li>88% feature reduction (102 → 12 features) without accuracy loss</li>
+        <li>Demonstrated effective handling of imbalanced scientific datasets</li>
+      </ul>
+    `,
+  },
 ]
 
 export function getProjects(): Project[] {
