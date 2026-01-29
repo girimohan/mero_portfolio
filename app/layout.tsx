@@ -16,7 +16,6 @@ export const metadata: Metadata = {
     "ML Engineer and Full Stack Developer specializing in AI/ML solutions and modern web applications. Masters in Computer Science student at University of Helsinki.",
   generator: 'v0.dev'
 }
-}
 
 export default function RootLayout({
   children,
