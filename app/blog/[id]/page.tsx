@@ -1,171 +1,67 @@
-"use client"
-
-import { useState, useEffect } from "react"
-import { useParams, useRouter } from "next/navigation"
+import type { Metadata } from "next"
 import Image from "next/image"
-import { ArrowLeft, Calendar, Clock, Facebook, Twitter, Linkedin, LinkIcon } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import Navbar from "@/components/navbar"
-import Footer from "@/components/footer"
-import { ThemeProvider } from "@/components/theme-provider"
-import { getBlogPost, type BlogPost } from "@/lib/data/blogs"
+import Link from "next/link"
+import { notFound, permanentRedirect } from "next/navigation"
+import { ArrowLeft } from "lucide-react"
+import { blogPosts, getBlogPost } from "@/lib/data/blogs"
+import { profile } from "@/lib/data/profile"
 
-export default function BlogPostPage() {
-  const params = useParams()
-  const router = useRouter()
-  const [post, setPost] = useState<BlogPost | null>(null)
-  const [loading, setLoading] = useState(true)
+type Props = { params: Promise<{ id: string }> }
 
-  useEffect(() => {
-    if (params.id) {
-      const foundPost = getBlogPost(params.id as string)
-      setPost(foundPost || null)
-      setLoading(false)
-    }
-  }, [params.id])
+export function generateStaticParams() {
+  return blogPosts.map((p) => ({ id: p.slug }))
+}
 
-  const shareUrl = typeof window !== "undefined" ? window.location.href : ""
-  const shareTitle = post ? `Check out this article: ${post.title}` : "Check out this article"
-
-  const shareOnTwitter = () => {
-    window.open(
-      `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareTitle)}`,
-      "_blank",
-    )
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const post = getBlogPost((await params).id)
+  if (!post) return {}
+  return {
+    title: post.title,
+    description: post.summary,
+    alternates: { canonical: `/blog/${post.slug}` },
+    openGraph: { type: "article", title: post.title, description: post.summary, images: post.image ? [post.image] : undefined },
   }
+}
 
-  const shareOnFacebook = () => {
-    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`, "_blank")
-  }
+export default async function BlogPostPage({ params }: Props) {
+  const { id } = await params
+  const post = getBlogPost(id)
+  if (!post) notFound()
+  if (id !== post.slug) permanentRedirect(`/blog/${post.slug}`)
 
-  const shareOnLinkedIn = () => {
-    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`, "_blank")
-  }
+  return (
+    <article className="shell max-w-3xl pb-8 pt-10 sm:pt-14">
+      <Link href="/blog" className="group inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground">
+        <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
+        All writing
+      </Link>
 
-  const copyLink = () => {
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(shareUrl)
-      alert("Link copied to clipboard!")
-    }
-  }
+      <header className="mt-8">
+        <p className="font-mono text-xs text-muted-foreground">
+          {post.date} · {post.category}
+          {post.readTime ? ` · ${post.readTime}` : ""}
+        </p>
+        <h1 className="mt-4 text-3xl font-semibold leading-tight sm:text-5xl">{post.title}</h1>
+        <p className="mt-4 text-lg text-muted-foreground">{post.summary}</p>
+      </header>
 
-  const handleBackToBlog = () => {
-    router.push("/#blog")
-  }
-
-  if (loading) {
-    return (      <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-        <div className="flex min-h-screen flex-col">
-          <Navbar activeSection="blog" />
-          <div className="min-h-screen flex items-center justify-center">
-            <div className="animate-pulse text-xl">Loading article...</div>
-          </div>
+      {post.image && (
+        <div className="relative mt-10 aspect-[16/9] overflow-hidden rounded-2xl border border-border bg-muted">
+          <Image src={post.image} alt="" fill priority sizes="(min-width: 768px) 720px, 100vw" className="object-cover" />
         </div>
-      </ThemeProvider>
-    )
-  }
+      )}
 
-  if (!post) {
-    return (      <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-        <div className="flex min-h-screen flex-col">
-          <Navbar activeSection="blog" />
-          <div className="min-h-screen flex flex-col items-center justify-center p-4">
-            <h1 className="text-2xl font-bold mb-4">Article not found</h1>
-            <p className="mb-6 text-foreground/70">The article you're looking for doesn't exist or has been removed.</p>
-            <Button onClick={handleBackToBlog}>
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Blog
-            </Button>
-          </div>
-        </div>
-      </ThemeProvider>
-    )
-  }
+      <div
+        className="prose prose-neutral mt-10 max-w-none dark:prose-invert prose-headings:font-semibold prose-headings:tracking-tight prose-a:text-primary prose-li:my-1"
+        dangerouslySetInnerHTML={{ __html: post.content }}
+      />
 
-  return (    <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-      <div className="flex min-h-screen flex-col">
-        <Navbar activeSection="blog" />
-        <div className="min-h-screen pt-24 pb-16">
-          <div className="container mx-auto px-4 max-w-4xl">
-            <Button variant="ghost" className="mb-6" onClick={handleBackToBlog}>
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Blog
-            </Button>
-
-            <article>
-              <div className="mb-8">
-                <Badge className="mb-4 bg-primary text-primary-foreground">{post.category}</Badge>
-                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-foreground">{post.title}</h1>
-
-                <div className="flex items-center text-foreground/70 mb-6">
-                  <Calendar className="h-4 w-4 mr-2" />
-                  <span>{post.date}</span>
-                  <span className="mx-2">•</span>
-                  <Clock className="h-4 w-4 mr-2" />
-                  <span>{post.readTime}</span>
-                </div>
-
-                <div className="relative aspect-video w-full overflow-hidden rounded-lg mb-8">
-                  <Image
-                    src={post.image || "/images/ui/placeholder.svg?height=400&width=600"}
-                    alt={post.title}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-              </div>
-
-              <div
-                className="prose prose-lg dark:prose-invert max-w-none prose-headings:text-foreground prose-p:text-foreground/90 prose-a:text-primary prose-strong:text-foreground prose-code:text-foreground/90 prose-code:bg-muted prose-code:px-1 prose-code:py-0.5 prose-code:rounded"
-                dangerouslySetInnerHTML={{ __html: post.content }}
-              />
-
-              <div className="mt-12 pt-6 border-t border-border">
-                <h3 className="text-xl font-semibold mb-4 text-foreground">Share this article</h3>
-                <div className="flex gap-2">
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    onClick={shareOnTwitter}
-                    className="rounded-full h-10 w-10 hover:text-primary hover:border-primary"
-                    aria-label="Share on Twitter"
-                  >
-                    <Twitter className="h-5 w-5" />
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    onClick={shareOnFacebook}
-                    className="rounded-full h-10 w-10 hover:text-primary hover:border-primary"
-                    aria-label="Share on Facebook"
-                  >
-                    <Facebook className="h-5 w-5" />
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    onClick={shareOnLinkedIn}
-                    className="rounded-full h-10 w-10 hover:text-primary hover:border-primary"
-                    aria-label="Share on LinkedIn"
-                  >
-                    <Linkedin className="h-5 w-5" />
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    onClick={copyLink}
-                    className="rounded-full h-10 w-10 hover:text-primary hover:border-primary"
-                    aria-label="Copy link"
-                  >
-                    <LinkIcon className="h-5 w-5" />
-                  </Button>
-                </div>
-              </div>
-            </article>          </div>
-        </div>
-        <Footer />
-      </div>
-    </ThemeProvider>
+      <footer className="mt-16 flex flex-col gap-2 border-t border-border pt-6 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+        <span>Written by {profile.name}</span>
+        <a href={`mailto:${profile.email}?subject=${encodeURIComponent(`Re: ${post.title}`)}`} className="font-medium text-foreground underline underline-offset-4">
+          Reply by email
+        </a>
+      </footer>
+    </article>
   )
 }

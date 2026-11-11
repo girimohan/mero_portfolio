@@ -17,7 +17,6 @@ export const blogPosts: BlogPost[] = [
     title: "Implementing YOLO for Real-time Object Detection at HAMK",
     summary:
       "A deep dive into how I implemented YOLO (You Only Look Once) for real-time object detection during my HAMK internship. Learn about the challenges and solutions in computer vision projects.",
-    image: "/images/ui/placeholder.svg?height=400&width=600",
     date: "May 15, 2024",
     readTime: "8 min read",
     category: "Computer Vision",
@@ -46,7 +45,6 @@ export const blogPosts: BlogPost[] = [
     title: "Extracting and Summarizing Academic Theses with NLP",
     summary:
       "How I built a system to extract thesis information from theseus.fi and summarize concepts using Hugging Face transformers, T5 models, and BERT.",
-    image: "/images/ui/placeholder.svg?height=400&width=600",
     date: "June 22, 2024",
     readTime: "10 min read",
     category: "NLP",
@@ -80,7 +78,6 @@ export const blogPosts: BlogPost[] = [
     title: "Building Cross-platform Apps with React Native",
     summary:
       "My experience building cross-platform mobile applications with React Native, including tips for integrating with Flask APIs and handling state management.",
-    image: "/images/ui/placeholder.svg?height=400&width=600",
     date: "July 10, 2024",
     readTime: "6 min read",
     category: "Mobile Development",
@@ -109,7 +106,6 @@ export const blogPosts: BlogPost[] = [
     title: "The Power of Next.js for Modern Web Development",
     summary:
       "Why I chose Next.js for my portfolio website and how it enables better performance, SEO, and developer experience compared to traditional React applications.",
-    image: "/images/ui/placeholder.svg?height=400&width=600",
     date: "August 5, 2024",
     readTime: "7 min read",
     category: "Web Development",
@@ -134,7 +130,7 @@ export const blogPosts: BlogPost[] = [
     slug: "change-in-coding-modern-days",
     title: "Change in Coding in Modern Days: How Coders Survive",
     summary: "A reflection on the rapid evolution of coding practices, tools, and the mindset required for developers to thrive in today's tech landscape.",
-  image: "/images/blog/modern-coding-image.jpg",
+    image: "/images/blog/modern-coding-image.jpg",
     date: "June 13, 2025",
     readTime: "7 min read",
     category: "Tech Reflections",
@@ -223,6 +219,7 @@ export function getBlogPosts(): BlogPost[] {
   })
 }
 
-export function getBlogPost(id: string): BlogPost | undefined {
-  return blogPosts.find(post => post.id.toString() === id)
+/** Accepts a slug, or a legacy numeric id from older links. */
+export function getBlogPost(idOrSlug: string): BlogPost | undefined {
+  return blogPosts.find((post) => post.slug === idOrSlug || post.id.toString() === idOrSlug)
 }

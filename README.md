@@ -1,63 +1,40 @@
-# Giri Mohan - ML Engineer & Full Stack Developer Portfolio
+# Mohan Giri — portfolio
 
-Modern portfolio website showcasing AI/ML projects and full stack development work. Built with Next.js 15, TypeScript, and Tailwind CSS.
+Personal site: projects, background and writing. Live at https://girimohan.vercel.app.
 
-## 🛠️ Tech Stack
+Built with Next.js 16 (App Router, fully static), React 19, TypeScript and Tailwind CSS. Deployed on Vercel.
 
-- **Framework:** Next.js 15 with App Router
-- **Language:** TypeScript  
-- **Styling:** Tailwind CSS + Radix UI
-- **Theme:** next-themes with dark mode default
-- **Icons:** Lucide React
-- **Animations:** Framer Motion
-
-## 🚀 Development
+## Develop
 
 ```bash
-# Install dependencies
-npm install
-
-# Run development server  
-npm run dev
-# or use the batch file
-start-dev.bat
+pnpm install --frozen-lockfile
+pnpm dev          # http://localhost:3000
+pnpm build        # production build (also type-checks)
+pnpm typecheck
 ```
 
-Visit [http://localhost:3000](http://localhost:3000)
+After adding or removing a dependency, run `pnpm install --frozen-lockfile` once before `pnpm build`.
+Builds straight after `pnpm add`/`pnpm remove` have failed locally with a Next.js prerender invariant,
+and a clean install fixes it.
 
-## 📁 Key Structure
+## Where things live
 
-```
-app/                 # Next.js App Router pages
-components/
-  ├── navbar.tsx     # Main navigation with theme toggle
-  ├── sections/      # Page sections (hero, projects, etc.)
-  └── ui/           # Radix UI components
-hooks/              # Custom React hooks
-lib/
-  ├── utils.ts      # Utility functions
-  └── data/         # Static data (projects, blogs)
-```
+| What | File |
+|---|---|
+| Name, links, experience, education, skills | `lib/data/profile.ts` |
+| Projects (and the "smaller projects" list) | `lib/data/projects.ts` |
+| Blog posts | `lib/data/blogs.ts` |
+| Lab experiments | `lib/data/experiments.ts` |
+| Home page sections | `components/sections/` |
+| Hero tiles (terminal, live pipeline) | `components/hero/` |
+| Colours, fonts, animations | `app/globals.css`, `tailwind.config.ts` |
 
-## ⚙️ Configuration
+Project pages are generated from `lib/data/projects.ts` at `/projects/<slug>`. Old numeric URLs (`/projects/3`) redirect to the slug.
 
-- **Theme:** Dark mode default, light mode toggle available
-- **Colors:** Finland-themed (dark: yellow/gold, light: blue accents)
-- **Responsive:** Mobile-first design with desktop/tablet breakpoints
-- **Data:** Projects and blogs stored in `lib/data/`
+To add a project, add an entry to `projects`. Array order is display order. Put screenshots in `public/images/projects/`.
+The home page's "Selected work" order is set in `components/sections/projects-section.tsx`.
 
-## 🔧 Build & Deploy
+## Contact form
 
-```bash
-npm run build      # Production build
-npm start         # Production server
-```
-
-## 🤝 Contact
-
-- **Email:** mohan_gi@hotmail.com
-- **Location:** Helsinki, Finland
-
----
-
-Built with ❤️ by Giri Mohan
+The form on `/contact` posts to [Web3Forms](https://web3forms.com). Set `NEXT_PUBLIC_WEB3FORMS_KEY` in Vercel's environment variables.
+Without it, the form is disabled and visitors are pointed to email.

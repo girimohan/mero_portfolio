@@ -1,181 +1,71 @@
-import Navbar from "@/components/navbar"
-import Footer from "@/components/footer"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { ExternalLink, Github } from "lucide-react"
-import Image from "next/image"
+import type { Metadata } from "next"
+import { ArrowUpRight } from "lucide-react"
+import { ProjectGrid } from "@/components/project-grid"
+import { projects, smallerProjects } from "@/lib/data/projects"
+import { profile } from "@/lib/data/profile"
+
+export const metadata: Metadata = {
+  title: "Projects",
+  description: "Machine learning systems, LLM research and full-stack apps by Mohan Giri.",
+}
 
 export default function ProjectsPage() {
   return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
-      <main className="pt-32 pb-16">
-        <div className="container">
-          <div className="mb-12">
-            <h1 className="text-4xl font-bold mb-4">Projects</h1>
-            <p className="text-muted-foreground text-lg max-w-3xl">
-              A collection of my recent projects in machine learning, computer vision, and web development.
-            </p>
-          </div>
+    <div className="shell pb-8 pt-12 sm:pt-16">
+      <header className="mb-12 max-w-2xl">
+        <p className="eyebrow mb-3">Projects</p>
+        <h1 className="text-4xl font-semibold sm:text-5xl">Everything I&apos;ve built</h1>
+        <p className="mt-4 text-lg text-muted-foreground">
+          Machine learning systems, research and the apps around them, newest and most substantial first. Projects
+          marked &ldquo;Private code&rdquo; live in private repositories, and I&apos;m happy to walk through them.
+        </p>
+      </header>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Project 1 */}
-            <div className="bg-background border rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-              <div className="relative h-64">
-                <Image
-                  src="/images/ui/placeholder.svg?height=400&width=600"
-                  alt="Smart Parking System"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="p-6">
-                <h2 className="text-2xl font-bold mb-2">Smart Parking System</h2>
-                <p className="text-muted-foreground mb-4">
-                  A computer vision-based system that detects available parking spots with 97.9% accuracy using YOLOv5
-                  object detection.
-                </p>
-                <div className="flex flex-wrap gap-2 mb-6">
-                  <Badge>Python</Badge>
-                  <Badge>PyTorch</Badge>
-                  <Badge>YOLOv5</Badge>
-                  <Badge>Computer Vision</Badge>
-                </div>
-                <div className="flex gap-3">
-                  <Button variant="outline" size="sm" asChild>
-                    <a href="#" target="_blank" rel="noopener noreferrer">
-                      <Github className="mr-2 h-4 w-4" />
-                      Code
-                    </a>
-                  </Button>
-                  <Button size="sm" asChild>
-                    <a href="#" target="_blank" rel="noopener noreferrer">
-                      <ExternalLink className="mr-2 h-4 w-4" />
-                      Demo
-                    </a>
-                  </Button>
-                </div>
-              </div>
-            </div>
+      <ProjectGrid projects={projects} />
 
-            {/* Project 2 */}
-            <div className="bg-background border rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-              <div className="relative h-64">
-                <Image
-                  src="/images/ui/placeholder.svg?height=400&width=600"
-                  alt="Surface Blister Detection"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="p-6">
-                <h2 className="text-2xl font-bold mb-2">Surface Blister Detection</h2>
-                <p className="text-muted-foreground mb-4">
-                  Quality control system that detects surface blisters on industrial products using deep learning
-                  techniques.
-                </p>
-                <div className="flex flex-wrap gap-2 mb-6">
-                  <Badge>Python</Badge>
-                  <Badge>TensorFlow</Badge>
-                  <Badge>Deep Learning</Badge>
-                  <Badge>Quality Control</Badge>
-                </div>
-                <div className="flex gap-3">
-                  <Button variant="outline" size="sm" asChild>
-                    <a href="#" target="_blank" rel="noopener noreferrer">
-                      <Github className="mr-2 h-4 w-4" />
-                      Code
-                    </a>
-                  </Button>
-                  <Button size="sm" asChild>
-                    <a href="#" target="_blank" rel="noopener noreferrer">
-                      <ExternalLink className="mr-2 h-4 w-4" />
-                      Demo
-                    </a>
-                  </Button>
-                </div>
-              </div>
-            </div>
-
-            {/* Project 3 */}
-            <div className="bg-background border rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-              <div className="relative h-64">
-                <Image
-                  src="/images/ui/placeholder.svg?height=400&width=600"
-                  alt="Data Visualization Dashboard"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="p-6">
-                <h2 className="text-2xl font-bold mb-2">Data Visualization Dashboard</h2>
-                <p className="text-muted-foreground mb-4">
-                  Interactive dashboard for visualizing complex datasets with filtering and drill-down capabilities.
-                </p>
-                <div className="flex flex-wrap gap-2 mb-6">
-                  <Badge>React</Badge>
-                  <Badge>D3.js</Badge>
-                  <Badge>PowerBI</Badge>
-                  <Badge>Data Analysis</Badge>
-                </div>
-                <div className="flex gap-3">
-                  <Button variant="outline" size="sm" asChild>
-                    <a href="#" target="_blank" rel="noopener noreferrer">
-                      <Github className="mr-2 h-4 w-4" />
-                      Code
-                    </a>
-                  </Button>
-                  <Button size="sm" asChild>
-                    <a href="#" target="_blank" rel="noopener noreferrer">
-                      <ExternalLink className="mr-2 h-4 w-4" />
-                      Demo
-                    </a>
-                  </Button>
-                </div>
-              </div>
-            </div>
-
-            {/* Project 4 */}
-            <div className="bg-background border rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-              <div className="relative h-64">
-                <Image
-                  src="/images/ui/placeholder.svg?height=400&width=600"
-                  alt="Personal Portfolio Website"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="p-6">
-                <h2 className="text-2xl font-bold mb-2">Personal Portfolio Website</h2>
-                <p className="text-muted-foreground mb-4">
-                  A responsive portfolio website built with modern web technologies to showcase projects and skills.
-                </p>
-                <div className="flex flex-wrap gap-2 mb-6">
-                  <Badge>Next.js</Badge>
-                  <Badge>React</Badge>
-                  <Badge>Tailwind CSS</Badge>
-                  <Badge>TypeScript</Badge>
-                </div>
-                <div className="flex gap-3">
-                  <Button variant="outline" size="sm" asChild>
-                    <a href="#" target="_blank" rel="noopener noreferrer">
-                      <Github className="mr-2 h-4 w-4" />
-                      Code
-                    </a>
-                  </Button>
-                  <Button size="sm" asChild>
-                    <a href="#" target="_blank" rel="noopener noreferrer">
-                      <ExternalLink className="mr-2 h-4 w-4" />
-                      Demo
-                    </a>
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </main>
-      <Footer />
+      <section className="mt-24">
+        <h2 className="text-2xl font-semibold">Smaller projects &amp; coursework</h2>
+        <p className="mt-2 text-muted-foreground">
+          Experiments, assignments and early work. More on{" "}
+          <a href={profile.links.github} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-foreground">
+            GitHub
+          </a>
+          .
+        </p>
+        <ul className="mt-8 divide-y divide-border border-y border-border">
+          {smallerProjects.map((p) => {
+            const inner = (
+              <>
+                <span className="font-mono text-xs text-muted-foreground">{p.year}</span>
+                <span>
+                  <span className="flex items-center gap-1 font-medium">
+                    {p.title}
+                    {p.href && <ArrowUpRight className="h-3.5 w-3.5 text-muted-foreground" />}
+                  </span>
+                  <span className="mt-0.5 block text-sm text-muted-foreground">{p.description}</span>
+                </span>
+                <span className="hidden flex-wrap justify-end gap-1.5 sm:flex">
+                  {p.tags.map((t) => (
+                    <span key={t} className="chip">{t}</span>
+                  ))}
+                </span>
+              </>
+            )
+            const cls = "grid gap-1 py-5 sm:grid-cols-[4rem_1fr_auto] sm:items-baseline sm:gap-6"
+            return (
+              <li key={p.title}>
+                {p.href ? (
+                  <a href={p.href} target="_blank" rel="noopener noreferrer" className={`${cls} group hover:bg-muted/40`}>
+                    {inner}
+                  </a>
+                ) : (
+                  <div className={cls}>{inner}</div>
+                )}
+              </li>
+            )
+          })}
+        </ul>
+      </section>
     </div>
   )
 }

@@ -1,231 +1,119 @@
 "use client"
 
-import { useState } from "react"
-import { useRouter, usePathname } from "next/navigation"
-import { Github, Link, Menu, X, Linkedin } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { motion, AnimatePresence } from "framer-motion"
+import { useEffect, useState } from "react"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
+import { Menu, X, FileText } from "lucide-react"
 import { ThemeToggle } from "@/components/theme-toggle"
+import { profile } from "@/lib/data/profile"
+import { cn } from "@/lib/utils"
 
-interface NavbarProps {
-  activeSection?: string
-}
+const navItems = [
+  { href: "/projects", label: "Projects" },
+  { href: "/about", label: "About" },
+  { href: "/blog", label: "Writing" },
+  { href: "/contact", label: "Contact" },
+]
 
-const Navbar = ({ activeSection = "home" }: NavbarProps) => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const router = useRouter()
+export default function Navbar() {
   const pathname = usePathname()
+  const [open, setOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
 
-  const isHomePage = pathname === "/"
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8)
+    onScroll()
+    window.addEventListener("scroll", onScroll, { passive: true })
+    return () => window.removeEventListener("scroll", onScroll)
+  }, [])
 
-  const scrollToSection = (sectionId: string) => {
-    if (!isHomePage) {
-      // If not on home page, navigate to home first then scroll
-      router.push(`/#${sectionId}`)
-      return
-    }
+  // Close the mobile menu after navigating.
+  useEffect(() => setOpen(false), [pathname])
 
-    const element = document.getElementById(sectionId)
-    if (element) {
-      const offsetTop = element.offsetTop - 100
-      window.scrollTo({
-        top: offsetTop,
-        behavior: "smooth",
-      })
-    }
-    setIsMenuOpen(false)
-  }
-
-  const handleNavigation = (sectionId: string, isPage?: boolean) => {
-    if (isPage) {
-      router.push(`/${sectionId}`)
-      setIsMenuOpen(false)
-      return
-    }
-    if (isHomePage) {
-      scrollToSection(sectionId)
-    } else {
-      router.push(`/#${sectionId}`)
-    }
-  }
-
-  const navItems: { id: string; label: string; isPage?: boolean }[] = [
-    { id: "home", label: "Home" },
-    { id: "about", label: "About", isPage: true },
-    { id: "skills", label: "Skills" },
-    { id: "projects", label: "Projects" },
-    { id: "experience", label: "Experience" },
-    { id: "education", label: "Education" },
-    { id: "blog", label: "Blog" },
-    { id: "contact", label: "Contact" },
-  ]
+  const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`)
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 dark:bg-background/90 backdrop-blur-md border-b border-border/50 dark:border-border/30">
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <div className="flex-shrink-0">
-            <button
-              onClick={() => handleNavigation("home")}
-              className="group relative flex items-center justify-center"
-            >
-              {/* Logo Background with Gradient */}
-              <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-primary via-primary/90 to-primary/80 dark:from-primary dark:via-primary/90 dark:to-primary/70 shadow-lg group-hover:shadow-primary/25 dark:group-hover:shadow-primary/20 transition-all duration-300 group-hover:scale-105">
-                {/* Inner glow effect */}
-                <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-white/10 to-transparent opacity-50" />
-                
-                {/* MG Text */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="text-white font-bold text-sm tracking-tight">MG</span>
-                </div>
-              </div>
-              
-              {/* Optional: Hover tooltip */}
-              <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
-                <div className="bg-background/90 dark:bg-background/80 backdrop-blur-sm text-foreground/80 text-xs px-2 py-1 rounded border border-border/50 whitespace-nowrap">
-                  Mohan Giri
-                </div>
-              </div>
-            </button>
-          </div>
+    <header
+      className={cn(
+        "sticky top-0 z-50 border-b transition-colors duration-300",
+        scrolled || open ? "border-border bg-background/80 backdrop-blur-lg" : "border-transparent bg-background/0",
+      )}
+    >
+      <nav className="shell flex h-16 items-center justify-between" aria-label="Main">
+        <Link href="/" className="group flex items-center gap-2 font-semibold tracking-tight">
+          <span className="flex h-7 w-7 items-center justify-center rounded-md bg-foreground font-mono text-[11px] font-bold text-background transition-transform group-hover:-rotate-6">
+            MG
+          </span>
+          <span>{profile.name}</span>
+        </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => handleNavigation(item.id, item.isPage)}
-                className={`text-sm font-medium transition-colors hover:text-primary dark:hover:text-primary ${
-                  activeSection === item.id || (item.isPage && pathname === `/${item.id}`)
-                    ? "text-primary dark:text-primary" 
-                    : "text-foreground/70 dark:text-foreground/80"
-                }`}
-              >
-                {item.label}
-              </button>
-            ))}
-          </div>
-
-          {/* Social Links & Theme Switcher */}
-          <div className="hidden md:flex items-center space-x-2">
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              asChild 
-              className="text-foreground/80 dark:text-foreground/70 hover:text-primary dark:hover:text-primary"
+        <div className="hidden items-center gap-1 md:flex">
+          {navItems.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              aria-current={isActive(item.href) ? "page" : undefined}
+              className={cn(
+                "rounded-full px-3 py-1.5 text-sm transition-colors",
+                isActive(item.href) ? "bg-muted text-foreground" : "text-muted-foreground hover:text-foreground",
+              )}
             >
-              <a
-                href="https://www.linkedin.com/in/mohan-giri-37b87a186/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="h-5 w-5" />
-              </a>
-            </Button>
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              asChild 
-              className="text-foreground/80 dark:text-foreground/70 hover:text-primary dark:hover:text-primary"
-            >
-              <a href="https://github.com/girimohan" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                <Github className="h-5 w-5" />
-              </a>
-            </Button>
-            {/* Theme Switcher */}
-            <div className="relative ml-2">
-              <ThemeToggle />
-              {/* Optional: Add a dropdown for more theme options in the future */}
-            </div>
-          </div>
-
-          {/* Mobile menu button */}
-          <div className="md:hidden flex items-center gap-2">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-foreground/80 dark:text-foreground/70 hover:text-primary dark:hover:text-primary"
-              aria-label="Toggle menu"
-            >
-              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </Button>
-            {/* Theme Switcher for Mobile */}
-            <div className="ml-2">
-              <ThemeToggle mobile={true} />
-            </div>
-          </div>
+              {item.label}
+            </Link>
+          ))}
+          <span className="mx-2 h-5 w-px bg-border" aria-hidden />
+          <ThemeToggle />
+          <a
+            href={profile.resume}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="ml-1 inline-flex items-center gap-1.5 rounded-full bg-foreground px-3.5 py-1.5 text-sm font-medium text-background transition-opacity hover:opacity-85"
+          >
+            <FileText className="h-3.5 w-3.5" />
+            Resume
+          </a>
         </div>
 
-        {/* Mobile Navigation */}
-        <AnimatePresence>
-          {isMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.2 }}
-              className="md:hidden border-t border-border/50 dark:border-border/30"
-            >
-              <div className="py-4 space-y-2">
-                {navItems.map((item) => (
-                  <button
-                    key={item.id}
-                    onClick={() => handleNavigation(item.id, item.isPage)}
-                    className={`block w-full text-left px-4 py-2 text-sm font-medium transition-colors hover:text-primary dark:hover:text-primary hover:bg-muted/50 dark:hover:bg-muted/30 rounded-md ${
-                      activeSection === item.id || (item.isPage && pathname === `/${item.id}`)
-                        ? "text-primary dark:text-primary bg-muted/50 dark:bg-muted/30" 
-                        : "text-foreground/70 dark:text-foreground/80"
-                    }`}
-                  >
-                    {item.label}
-                  </button>
-                ))}
+        <div className="flex items-center gap-1 md:hidden">
+          <ThemeToggle />
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            className="inline-flex h-9 w-9 items-center justify-center rounded-full hover:bg-muted"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+          >
+            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
+      </nav>
 
-                <div className="flex items-center justify-center space-x-4 pt-4 border-t border-border/50 dark:border-border/30 mt-4">
-                  <Button 
-                    variant="ghost" 
-                    size="icon" 
-                    asChild 
-                    className="text-foreground/80 dark:text-foreground/70 hover:text-primary dark:hover:text-primary"
-                  >
-                    <a
-                      href="https://www.linkedin.com/in/mohan-giri-37b87a186/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label="LinkedIn"
-                    >
-                      <Linkedin className="h-5 w-5" />
-                    </a>
-                  </Button>
-                  <Button 
-                    variant="ghost" 
-                    size="icon" 
-                    asChild 
-                    className="text-foreground/80 dark:text-foreground/70 hover:text-primary dark:hover:text-primary"
-                  >
-                    <a
-                      href="https://github.com/girimohan"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label="GitHub"
-                    >
-                      <Github className="h-5 w-5" />
-                    </a>
-                  </Button>
-                  <div className="ml-2">
-                    <ThemeToggle mobile={true} />
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
-    </nav>
+      {open && (
+        <div className="border-t border-border md:hidden">
+          <div className="shell flex flex-col py-3">
+            {navItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={cn(
+                  "rounded-lg px-3 py-2.5 text-base",
+                  isActive(item.href) ? "bg-muted font-medium" : "text-muted-foreground",
+                )}
+              >
+                {item.label}
+              </Link>
+            ))}
+            <a
+              href={profile.resume}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-2 rounded-lg bg-foreground px-3 py-2.5 text-center font-medium text-background"
+            >
+              Download resume
+            </a>
+          </div>
+        </div>
+      )}
+    </header>
   )
 }
-
-export default Navbar
