@@ -79,7 +79,7 @@ export default function HeroSection() {
           <Reveal delay={0.05} className="lg:col-span-4">
             <div className="relative h-full min-h-[320px] overflow-hidden rounded-3xl border border-border bg-white sm:min-h-[420px]">
               <Image
-                src={profile.photo}
+                src={profile.heroPhoto}
                 alt={`Portrait of ${profile.name}`}
                 fill
                 priority

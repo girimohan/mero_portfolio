@@ -9,6 +9,7 @@ export const profile = {
   siteUrl: "https://girimohan.vercel.app",
   resume: "/images/profile/resume_mohan.pdf",
   photo: "/images/profile/profile.png",
+  heroPhoto: "/images/profile/profile2.JPG",
   links: {
     github: "https://github.com/girimohan",
     linkedin: "https://www.linkedin.com/in/mohan-giri-37b87a186/",
