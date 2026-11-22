@@ -182,6 +182,139 @@ export const projects: Project[] = [
     ],
   },
   {
+    id: 26,
+    slug: "remote-job-radar",
+    title: "Remote Job Radar",
+    tagline: "Finds remote jobs someone in Finland can actually take, ranks them and tracks applications.",
+    summary:
+      "Most jobs labelled \"remote\" are open to one country only, usually the US. Every morning this pipeline reads postings from about 600 company career boards and eight remote job boards, works out where each job can be done from, keeps the ones open to Finland, Europe or worldwide, and scores them against a target profile. The results go to a dashboard on GitHub Pages and a daily digest by email.",
+    year: 2026,
+    context: "Personal project",
+    category: "ml",
+    topics: ["data", "llm"],
+    status: "Live",
+    metrics: [
+      { value: "35,929", label: "postings collected in one daily run (22 Nov 2026)" },
+      { value: "1,339", label: "kept: open to Finland, Europe or worldwide and matching a target role" },
+      { value: "1,275", label: "\"remote\" jobs filtered out as US-only in the same run" },
+    ],
+    tags: ["Python", "GitHub Actions", "GitHub Pages", "Claude API", "BM25", "Embeddings", "pytest"],
+    image: "/images/projects/remote-job-radar.png",
+    links: {
+      demo: "https://girimohan.github.io/remote-job-radar/",
+      github: "https://github.com/girimohan/remote-job-radar",
+    },
+    related: ["viral-news-radar", "fintax-retrieval-benchmark"],
+    sections: [
+      {
+        heading: "How it works",
+        bullets: [
+          "Collect: the public job-board APIs of Greenhouse, Lever, Ashby and SmartRecruiters for about 600 companies (including Wolt, Supercell, ICEYE, Oura, RELEX and Reaktor), plus Himalayas, Remote OK, Remotive, We Work Remotely, Jobicy, Arbeitnow, Working Nomads and Hacker News \"Who is hiring?\".",
+          "Eligibility: each job is labelled finland, europe, worldwide, eu_country, us_only, other_region or unclear, from the location first and from phrases in the description second (\"must be based in the US\", \"EMEA\").",
+          "Score (0 to 100): role, skills in the posting, seniority, years asked for, eligibility, contract wording and recency. The same job on several sites is kept once, preferring the company's own posting.",
+          "A GitHub Actions workflow runs it every morning, publishes the dashboard and opens a digest issue that GitHub emails out. The dashboard has filters, the reasons each job matched and an application tracker.",
+        ],
+      },
+      {
+        heading: "AI layer (built, off in the public run)",
+        bullets: [
+          "LLM classifier: Claude reads each job the rules kept and returns structured JSON. It must quote the sentence it relied on; if the quote is not in the posting word for word, the answer is rejected and the rule label stands. Answers are cached by posting hash, with a per-run budget.",
+          "Evaluation: hand-labelled postings compare rules, LLM and both combined on accuracy, macro F1 and per-label precision and recall, including how many jobs shown as open really are.",
+          "RAG CV tailoring (local only): requirements from a posting retrieve CV chunks with BM25 fused with dense embeddings. Claude writes bullets from those chunks only, citing them, and a grounding check flags any claim or number it cannot trace.",
+          "The public dashboard currently runs on the rules alone. The CV never enters the repository.",
+        ],
+      },
+      {
+        heading: "Engineering",
+        bullets: [
+          "64 pytest tests covering eligibility, scoring, sources, the LLM guards and the pipeline.",
+          "Only public, documented endpoints: the collector identifies itself, runs once a day and backs off when rate-limited. Portals whose terms or robots.txt forbid automated access (Duunitori, Oikotie, LinkedIn) get search links instead.",
+        ],
+      },
+    ],
+  },
+  {
+    id: 27,
+    slug: "tiski-ai-receptionist",
+    title: "Tiski: AI Receptionist",
+    tagline: "An AI receptionist on top of a full booking system for salons, clinics and other appointment businesses.",
+    summary:
+      "A multi-tenant booking platform where customers can chat with an AI receptionist that checks live availability and books, moves or cancels appointments. Every channel (booking page, front desk, chat and SMS replies) goes through one operations layer, so rules, reminders and waitlist offers behave the same everywhere. The demo salon is fictional.",
+    year: 2026,
+    context: "Personal project",
+    category: "apps",
+    topics: ["apps", "llm"],
+    status: "Prototype",
+    tags: ["Next.js", "TypeScript", "Postgres", "Supabase", "Claude tool use", "Stripe", "Twilio", "Vercel"],
+    image: "/images/projects/tiski-demo-salon.png",
+    gallery: [
+      { src: "/images/projects/tiski-demo-salon.png", caption: "Demo salon: services, prices and the receptionist chat a customer sees." },
+      { src: "/images/projects/tiski-landing.png", caption: "Landing page: owners create their own salon and receptionist in a few steps." },
+    ],
+    links: { demo: "https://tiski-omega.vercel.app" },
+    privateCode: true,
+    related: ["kushmabazar", "barmo-accounts"],
+    sections: [
+      {
+        heading: "Features",
+        bullets: [
+          "AI receptionist built on Claude tool use, channel-agnostic, with AI client memory: it saves allergies and preferences it hears, and staff get a brief before each visit.",
+          "Owner accounts with a public page per salon, staff schedules with breaks and time off, and an availability engine the calendar shares.",
+          "Reminders customers answer by SMS (1 to confirm, 2 to move or cancel through the AI) and a waitlist that offers a freed slot to the next person with a 30-minute window.",
+          "Deposits only for risky bookings (first visits, earlier no-shows, expensive services). The slot is held while unpaid and released automatically.",
+          "A one-line script tag adds the receptionist to a business's own website.",
+        ],
+      },
+      {
+        heading: "Engineering",
+        bullets: [
+          "Double bookings are prevented in the database: each booking locks the staff member's day and re-checks for clashes inside a transaction. Scheduled jobs claim rows with conditional updates, so several servers never send a reminder twice.",
+          "Row-level security is on for every table with no policies, so Supabase's public keys can read nothing; every query is scoped to the user's salon.",
+          "Every integration has a test mode: without keys the app runs on embedded Postgres (PGlite), an SMS outbox with a reply simulator, a simulated payment page and a rule-based receptionist. The public demo runs in this demo mode.",
+          "Reminders, hold expiry and waitlist offers run every minute from a Supabase pg_cron job calling a protected endpoint.",
+        ],
+      },
+    ],
+  },
+  {
+    id: 28,
+    slug: "viral-news-radar",
+    title: "Viral News Radar",
+    tagline: "Finds the stories many outlets and readers are picking up today and ranks them for a newsletter.",
+    summary:
+      "A daily pipeline that reads about 20 publisher feeds (Yle, Helsingin Sanomat, TechCrunch, The Verge, BBC, Sifted and others) and Hacker News, groups articles about the same event into stories, and scores each one on coverage, engagement, velocity and freshness. Built on the same pattern as Remote Job Radar to source stories for AIFinPost.",
+    year: 2026,
+    context: "Personal project",
+    category: "ml",
+    topics: ["data", "llm"],
+    status: "Live",
+    tags: ["Python", "NLP", "Clustering", "TF-IDF", "GitHub Actions", "GitHub Pages", "Claude API"],
+    image: "/images/projects/viral-news-radar.png",
+    links: {
+      demo: "https://girimohan.github.io/viral-news-radar/",
+      github: "https://github.com/girimohan/viral-news-radar",
+    },
+    related: ["remote-job-radar", "entity-extraction-clustering"],
+    sections: [
+      {
+        heading: "Clustering headlines into stories",
+        bullets: [
+          "Articles join a story through a shared link, shared rare words weighted by IDF over the day's headlines (compared with each story's centroid, so loosely related headlines do not chain), or shared names.",
+          "Two headlines that each name something, but nothing in common, are never merged. This keeps \"Meta cuts 5% of staff\" apart from \"Supercell cuts 10% of staff\".",
+          "A tuning command reports pairwise precision and recall against a hand-labelled day of 36 headlines with deliberately hard cases, across a grid of thresholds.",
+        ],
+      },
+      {
+        heading: "Scoring and output",
+        bullets: [
+          "Coverage, engagement and velocity combine as 1 − (1−a)(1−b)(1−c), so wide coverage or strong social buzz alone can rank a story, and both together rank it highest. Freshness and topic weight multiply the result.",
+          "Stories keep their id across days, so the dashboard can mark them new or rising, and a morning digest arrives by email.",
+          "Optional Claude briefs (headline, summary, newsletter angle, Finland link) must quote their source text word for word or are discarded. They are off in the public run.",
+        ],
+      },
+    ],
+  },
+  {
     id: 13,
     slug: "kushmabazar",
     title: "KushmaBazar",
@@ -540,6 +673,54 @@ export const projects: Project[] = [
     image: "/images/projects/merobihey.png",
     links: { demo: "https://merobihey.vercel.app" },
     privateCode: true,
+  },
+  {
+    id: 29,
+    slug: "pixelshrink",
+    title: "PixelShrink",
+    tagline: "A free image compressor, resizer and converter that never uploads your files.",
+    summary:
+      "Compresses, resizes and converts JPG, PNG and WebP images entirely in the browser, up to 20 at a time, with no account and no server. A target-size search finds the quality setting that gets a JPG or WebP under a chosen size, such as 200 KB.",
+    year: 2026,
+    context: "Personal project",
+    category: "apps",
+    topics: ["apps"],
+    status: "Live",
+    tags: ["React", "TypeScript", "Vite", "Canvas API", "GitHub Actions", "GitHub Pages"],
+    image: "/images/projects/pixelshrink.png",
+    links: {
+      demo: "https://girimohan.github.io/PixelShrink/",
+      github: "https://github.com/girimohan/PixelShrink",
+    },
+    sections: [
+      {
+        heading: "Details",
+        bullets: [
+          "Four tools on their own pages: compressor, resizer, JPG to WebP and \"compress to 200 KB\". Each page is prerendered as static HTML with its own title, description and canonical URL, so search engines can read it without running JavaScript.",
+          "Output size depends on the browser's canvas encoder, so exact byte targets are not guaranteed; the app says when a target cannot be reached at the chosen dimensions.",
+          "A GitHub Actions workflow builds and publishes the site on every push.",
+        ],
+      },
+    ],
+  },
+  {
+    id: 30,
+    slug: "tallyflow",
+    title: "TallyFlow",
+    tagline: "A fast, private online counter with multiple tallies, goals and CSV export.",
+    summary:
+      "A tally counter that increments on tap, click or the space bar. It runs several named counters with a combined total, custom steps and target goals with a progress bar, keyboard shortcuts, a focus mode and dark theme. Everything is saved in the browser and can be exported as CSV.",
+    year: 2026,
+    context: "Personal project",
+    category: "apps",
+    topics: ["apps"],
+    status: "Live",
+    tags: ["HTML", "CSS", "JavaScript", "Web Audio API", "localStorage", "GitHub Pages"],
+    image: "/images/projects/tallyflow.png",
+    links: {
+      demo: "https://girimohan.github.io/TallyFlow/",
+      github: "https://github.com/girimohan/TallyFlow",
+    },
   },
   {
     id: 19,
