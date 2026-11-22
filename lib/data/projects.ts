@@ -69,17 +69,18 @@ export const projects: Project[] = [
     year: 2026,
     context: "Personal project",
     category: "ml",
-    topics: ["ml", "data"],
+    topics: ["ml", "data", "llm"],
     status: "Live",
     metrics: [
       { value: "35.2 s", label: "forecast error (MAE) vs 64.7 s for the naive baseline" },
       { value: "~100", label: "trams tracked live, refreshed every 15 s" },
       { value: "1.08 M", label: "rows in the out-of-sample backtest" },
     ],
-    tags: ["Python", "MQTT", "scikit-learn", "DuckDB", "Parquet", "Streamlit", "Docker", "GitHub Actions"],
+    tags: ["Python", "MQTT", "scikit-learn", "DuckDB", "Parquet", "Streamlit", "LLM tool calling", "Docker", "GitHub Actions"],
     image: "/images/projects/tram-dashboard_live.png",
     gallery: [
       { src: "/images/projects/tram-dashboard_live.png", caption: "Live view: every tram on the map, coloured by punctuality, with a line-by-line status board." },
+      { src: "/images/projects/tram-dashboard_ask.png", caption: "Ask page: a question in plain language, answered from the punctuality history, with the lookup it used listed under the answer." },
       { src: "/images/projects/tram-dashboard_forecast.png", caption: "Forecast panel: each tram's predicted delay five minutes ahead." },
       { src: "/images/projects/tram-model_evaluation.png", caption: "Backtest: model error compared with the persistence and line × hour baselines." },
     ],
@@ -95,7 +96,18 @@ export const projects: Project[] = [
           "Ingest: subscribes to HSL's high-frequency positioning feed over MQTT (about 100 messages per second) and keeps one position per tram every 10 seconds.",
           "Process: deduplicates, fixes data issues and writes one Parquet partition per day.",
           "Train: builds features, splits by time, trains gradient boosting and saves a versioned model with its metrics.",
-          "Serve: a Streamlit dashboard with live, history, model-health and system pages. It also has an Ask page where an LLM answers questions using read-only lookups over the data.",
+          "Serve: a Streamlit dashboard with Live, Ask, History, Model health and System pages, running around the clock on a CSC cloud VM.",
+        ],
+      },
+      {
+        heading: "Ask: questions in plain language",
+        body: [
+          "The Ask page lets anyone question the data in their own words: \"When is the next tram at Lasipalatsi?\", \"How is line 4 doing right now?\", \"Which line has been least punctual this week?\". An LLM picks among seven read-only tools and writes the answer from what they return. It never sees the data otherwise and cannot run queries of its own, and every answer lists the lookups behind it.",
+        ],
+        bullets: [
+          "Tools: next arrivals from HSL's realtime predictions, stop search over static GTFS, live line status with the model's 5-minute forecast, service alerts, punctuality history, live forecast accuracy and detected incidents.",
+          "Fast lookups: the GTFS-RT archiver keeps the latest poll of tram trips in one small file, so a lookup takes milliseconds instead of scanning the day's archive (about 19 s).",
+          "Any OpenAI-compatible API works (Groq's free tier by default). Visitors share one quota, so questions are capped per minute, per day and per visit.",
         ],
       },
       {
