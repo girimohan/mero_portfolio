@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { ArrowUpRight } from "lucide-react"
 import { getBlogPosts } from "@/lib/data/blogs"
+import { SubstackCard } from "@/components/substack"
 
 export const metadata: Metadata = {
   title: "Writing",
@@ -18,6 +19,8 @@ export default function BlogPage() {
         <h1 className="text-4xl font-semibold sm:text-5xl">Notes from the work</h1>
         <p className="mt-4 text-lg text-muted-foreground">What I learned building things, and what I think about where the field is going.</p>
       </header>
+
+      <SubstackCard className="mb-12" />
 
       <ul className="divide-y divide-border border-y border-border">
         {posts.map((post) => (

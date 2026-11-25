@@ -3,10 +3,38 @@
 import { useEffect, useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Menu, X, FileText } from "lucide-react"
+import { Menu, X, FileText, Github, Linkedin } from "lucide-react"
 import { ThemeToggle } from "@/components/theme-toggle"
+import { LiveAppsMenu, LiveAppsMobileList } from "@/components/live-apps-menu"
+import { SubstackIcon } from "@/components/substack"
 import { profile } from "@/lib/data/profile"
 import { cn } from "@/lib/utils"
+
+const socials = [
+  { href: profile.links.github, label: "GitHub", Icon: Github },
+  { href: profile.links.linkedin, label: "LinkedIn", Icon: Linkedin },
+  { href: profile.links.substack, label: "Substack", Icon: SubstackIcon },
+]
+
+function SocialLinks() {
+  return (
+    <>
+      {socials.map(({ href, label, Icon }) => (
+        <a
+          key={label}
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`${label} (opens in a new tab)`}
+          title={label}
+          className="inline-flex h-9 w-9 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+        >
+          <Icon className={label === "Substack" ? "h-3.5 w-3.5" : "h-4 w-4"} />
+        </a>
+      ))}
+    </>
+  )
+}
 
 const navItems = [
   { href: "/projects", label: "Projects" },
@@ -47,7 +75,7 @@ export default function Navbar() {
           <span>{profile.name}</span>
         </Link>
 
-        <div className="hidden items-center gap-1 md:flex">
+        <div className="hidden items-center gap-1 lg:flex">
           {navItems.map((item) => (
             <Link
               key={item.href}
@@ -61,7 +89,9 @@ export default function Navbar() {
               {item.label}
             </Link>
           ))}
+          <LiveAppsMenu />
           <span className="mx-2 h-5 w-px bg-border" aria-hidden />
+          <SocialLinks />
           <ThemeToggle />
           <a
             href={profile.resume}
@@ -74,7 +104,8 @@ export default function Navbar() {
           </a>
         </div>
 
-        <div className="flex items-center gap-1 md:hidden">
+        <div className="flex items-center gap-0.5 lg:hidden">
+          <SocialLinks />
           <ThemeToggle />
           <button
             type="button"
@@ -89,7 +120,7 @@ export default function Navbar() {
       </nav>
 
       {open && (
-        <div className="border-t border-border md:hidden">
+        <div className="max-h-[calc(100dvh-4rem)] overflow-y-auto border-t border-border lg:hidden">
           <div className="shell flex flex-col py-3">
             {navItems.map((item) => (
               <Link
@@ -103,6 +134,7 @@ export default function Navbar() {
                 {item.label}
               </Link>
             ))}
+            <LiveAppsMobileList />
             <a
               href={profile.resume}
               target="_blank"

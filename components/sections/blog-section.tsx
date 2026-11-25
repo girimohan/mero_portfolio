@@ -3,6 +3,7 @@ import { ArrowUpRight } from "lucide-react"
 import { Reveal } from "@/components/reveal"
 import { SectionHeading } from "@/components/section-heading"
 import { getBlogPosts } from "@/lib/data/blogs"
+import { SubstackCard } from "@/components/substack"
 
 export default function BlogSection() {
   const posts = getBlogPosts().slice(0, 3)
@@ -10,6 +11,9 @@ export default function BlogSection() {
   return (
     <section id="writing" className="shell py-20 sm:py-24">
       <SectionHeading eyebrow="Writing" title="Notes from the work" action={{ href: "/blog", label: "All posts" }} />
+      <Reveal className="mb-8">
+        <SubstackCard />
+      </Reveal>
       <ul className="divide-y divide-border border-y border-border">
         {posts.map((post, i) => (
           <Reveal as="li" key={post.slug} delay={i * 0.05}>

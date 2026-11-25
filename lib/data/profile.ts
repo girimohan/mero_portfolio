@@ -13,6 +13,12 @@ export const profile = {
   links: {
     github: "https://github.com/girimohan",
     linkedin: "https://www.linkedin.com/in/mohan-giri-37b87a186/",
+    substack: "https://aifinpost.substack.com",
+  },
+  newsletter: {
+    name: "AIFinPost",
+    url: "https://aifinpost.substack.com",
+    description: "A weekly English-language briefing on Finland's AI ecosystem.",
   },
   // One sentence that answers "what do you do?"
   headline: "I build machine learning systems end to end: from the raw data feed to the model, the evaluation and the app people actually use.",

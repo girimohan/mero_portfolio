@@ -1,10 +1,11 @@
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowDown, ArrowUpRight, Github, Linkedin, Mail, MapPin } from "lucide-react"
+import { ArrowDown, ArrowUpRight, Github, Linkedin, Mail, MapPin, Rocket } from "lucide-react"
 import { Reveal } from "@/components/reveal"
 import { PipelineTile } from "@/components/hero/pipeline-tile"
 import { TerminalTile } from "@/components/hero/terminal-tile"
 import { profile } from "@/lib/data/profile"
+import { SubstackIcon } from "@/components/substack"
 
 // Short, verifiable facts. Each one links to where it can be checked.
 const facts = [
@@ -57,6 +58,13 @@ export default function HeroSection() {
                 See selected work
                 <ArrowDown className="h-4 w-4 transition-transform group-hover:translate-y-0.5" />
               </Link>
+              <Link
+                href="#live"
+                className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-5 py-2.5 text-sm font-medium transition-colors hover:bg-muted"
+              >
+                <Rocket className="h-4 w-4" />
+                Try live apps
+              </Link>
               <a
                 href={`mailto:${profile.email}`}
                 className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-5 py-2.5 text-sm font-medium transition-colors hover:bg-muted"
@@ -70,6 +78,9 @@ export default function HeroSection() {
                 </a>
                 <a href={profile.links.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="rounded-full p-2.5 transition-colors hover:bg-muted hover:text-foreground">
                   <Linkedin className="h-5 w-5" />
+                </a>
+                <a href={profile.links.substack} target="_blank" rel="noopener noreferrer" aria-label="AIFinPost on Substack" className="rounded-full p-2.5 transition-colors hover:bg-muted hover:text-foreground">
+                  <SubstackIcon className="h-[18px] w-[18px]" />
                 </a>
               </div>
             </div>
